@@ -42,11 +42,6 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginView extends AppCompatActivity implements LoginContract.ILoginView{
 
     /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
@@ -60,6 +55,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.ILogin
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mLoginFormView;
+    private TextView tvErr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,23 +64,29 @@ public class LoginView extends AppCompatActivity implements LoginContract.ILogin
 
         presenter = new LoginPresenter(this);
 
-        // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                return presenter.onPasswordChange(textView, id, keyEvent);
+                String username = mEmailView.getText().toString();
+                String password = mPasswordView.getText().toString();
+                return presenter.onPasswordChange(textView, id, keyEvent, username, password);
             }
         });
-
         Button signInButton = (Button) findViewById(R.id.email_sign_in_button);
+        tvErr = (TextView) findViewById(R.id.tv_loginErr);
+
     }
 
     @Override
     public void onLogin(View view) {
-        presenter.attemptLogin();
+        presenter.attemptLogin(mEmailView.getText().toString(), mPasswordView.getText().toString());
+    }
+
+    @Override
+    public void setLoginError(String error) {
+        tvErr.setText(error);
     }
 
 

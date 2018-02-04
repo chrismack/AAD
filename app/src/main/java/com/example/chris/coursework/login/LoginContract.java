@@ -11,11 +11,13 @@ import android.widget.TextView;
 public interface LoginContract {
 
     interface ILoginPresenter {
-        boolean onPasswordChange(TextView textView, int id, KeyEvent keyEvent);
-        void attemptLogin();
+        boolean onPasswordChange(TextView textView, int id, KeyEvent keyEvent, String username, String password);
+        boolean attemptLogin(String username, String password);
+        void setLoginError(String message);
     }
 
     interface ILoginView {
         void onLogin(View view);
+        void setLoginError(String error);
     }
 }
