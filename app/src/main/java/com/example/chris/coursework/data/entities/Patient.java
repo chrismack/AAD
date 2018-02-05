@@ -1,5 +1,6 @@
 package com.example.chris.coursework.data.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -40,11 +41,11 @@ public class Patient {
         this.otherNames = otherNames;
     }
 
-    public Date getDob() {
+    public Calendar getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(Calendar dob) {
         this.dob = dob;
     }
 
@@ -92,7 +93,7 @@ public class Patient {
     private String firstName;
     private String lastName;
     private String otherNames;
-    private Date dob;
+    private Calendar dob;
     private String address1;
     private String address2;
     private String city;

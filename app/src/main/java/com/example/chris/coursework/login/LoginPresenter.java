@@ -1,5 +1,6 @@
 package com.example.chris.coursework.login;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.example.chris.coursework.data.DAO;
 import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.data.entities.Therapist;
+import com.example.chris.coursework.setup.SetupView;
 
 /**
  * Created by Chris on 01/02/2018.
@@ -19,6 +21,7 @@ public class LoginPresenter implements LoginContract.ILoginPresenter{
 
     private LoginView view;
     private LoginModel model;
+
     public LoginPresenter(LoginContract.ILoginView view) {
         this.view = (LoginView) view;
         this.model = new LoginModel(this);
@@ -37,8 +40,7 @@ public class LoginPresenter implements LoginContract.ILoginPresenter{
     public boolean attemptLogin(String username, String password) {
         if(!username.equals("") && !(password).equals("")) {
             if(this.model.verifyPassword(username, password)) {
-                //Todo: set intent
-                System.out.println("LOG IN");
+                showSetup();
             } else {
                 setLoginError("Incorrect login details");
             }
@@ -51,12 +53,14 @@ public class LoginPresenter implements LoginContract.ILoginPresenter{
         this.view.setLoginError(message);
     }
 
-    public LoginView getView() {
-        return view;
+    @Override
+    public void showSetup() {
+        Intent intent = new Intent(view, SetupView.class);
+        view.startActivity(intent);
     }
 
-    public void setView(LoginView view) {
-        this.view = view;
+    public LoginView getView() {
+        return view;
     }
 
 }

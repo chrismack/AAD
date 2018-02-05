@@ -14,6 +14,7 @@ public interface LoginContract {
         boolean onPasswordChange(TextView textView, int id, KeyEvent keyEvent, String username, String password);
         boolean attemptLogin(String username, String password);
         void setLoginError(String message);
+        void showSetup();
     }
 
     interface ILoginView {

@@ -80,6 +80,21 @@ public class LoginView extends AppCompatActivity implements LoginContract.ILogin
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onLogin(View view) {
         presenter.attemptLogin(mEmailView.getText().toString(), mPasswordView.getText().toString());
     }

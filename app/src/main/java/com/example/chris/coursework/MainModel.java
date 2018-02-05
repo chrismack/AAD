@@ -22,6 +22,7 @@ public class MainModel {
     public MainModel(Context context) {
         this.context = context;
         database = new DAO(this.context);
+        database.tmpAllPatients();
     }
 
     public static MainModel getInstance(Context context) {
@@ -41,6 +42,10 @@ public class MainModel {
 
     public void setTherapist(Therapist therapist) {
         this.therapist = therapist;
+    }
+
+    public void setCurrentPatient(Patient patient) {
+        this.patient = patient;
     }
 
 

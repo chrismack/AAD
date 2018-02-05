@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".selection.create.CreatePatientView">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="382dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/create_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="1277dp"
+        android:layout_height="483dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="633dp"
+            android:layout_height="572dp"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="1094dp"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <android.support.constraint.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="139dp"
+                                    android:layout_height="31dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/dob"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                                    android:textColor="@android:color/darker_gray"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <DatePicker
+                                    android:id="@+id/dp_patient_dob"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                            </android.support.constraint.ConstraintLayout>
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/et_patient_nshNo"
+                                android:layout_width="515dp"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/nhsNo"
+                                android:inputType="text" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_patient_secondname"
+                            android:layout_width="515dp"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/secondName"
+                            android:inputType="text" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_patient_firstname"
+                    android:layout_width="515dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/firstname"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="613dp"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_patient_create_error"
+                                android:layout_width="515dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@android:color/holo_red_dark" />
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/et_patient_postcode"
+                                android:layout_width="515dp"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/postcode" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_patient_city"
+                            android:layout_width="514dp"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/city" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_patient_address2"
+                        android:layout_width="515dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/address2" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_patient_address1"
+                    android:layout_width="515dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address1"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="143dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onSubmit"
+        android:text="@string/submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+</android.support.constraint.ConstraintLayout>

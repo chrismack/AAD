@@ -13,4 +13,18 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="new_patient">New Patient</string>
+    <string name="existing_patient">Existing Patient</string>
+    <string name="create_title">Enter new patient details</string>
+    <string name="patient_dn">First Name</string>
+    <string name="firstname">First Name</string>
+    <string name="secondName">Second Name</string>
+    <string name="address1">Address Line 1</string>
+    <string name="address2">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="postcode">Postcode</string>
+    <string name="dob">Date Of Birth</string>
+    <string name="nhsNo">NHS Number</string>
+    <string name="subNewPatient" >Submit</string>
+    <string name="submit">Submit</string>
 </resources>
