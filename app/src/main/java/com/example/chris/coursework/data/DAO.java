@@ -11,6 +11,8 @@ import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.data.entities.Therapist;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Chris on 01/02/2018.
@@ -68,6 +70,86 @@ public class DAO {
         }
     }
 
+    public List<Patient> getAllPatients() {
+        SQLiteDatabase db = getReadDatabase();
+        List<Patient> patients = new ArrayList<>();
+
+        Cursor c = db.query(
+                DatabaseSchema.PATIENT,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if(c != null && c.getCount() > 0) {
+            c.moveToFirst();
+            Patient patient;
+            while(!c.isAfterLast()) {
+                patient = new Patient();
+                patient.setId(c.getInt(c.getColumnIndexOrThrow("id")));
+                patient.setFirstName(c.getString(c.getColumnIndexOrThrow("firstName")));
+                patient.setLastName(c.getString(c.getColumnIndexOrThrow("lastName")));
+                patient.setOtherNames(c.getString(c.getColumnIndexOrThrow("otherNames")));
+                patient.setDob(c.getString(c.getColumnIndexOrThrow("dob")));
+                patient.setAddress1(c.getString(c.getColumnIndexOrThrow("address1")));
+                patient.setAddress2(c.getString(c.getColumnIndexOrThrow("address2")));
+                patient.setCity(c.getString(c.getColumnIndexOrThrow("city")));
+                patient.setPostcode(c.getString(c.getColumnIndexOrThrow("postcode")));
+                patient.setNhsNumber(c.getString(c.getColumnIndexOrThrow("nshNumber")));
+
+                patients.add(patient);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
+        db.close();
+
+        return patients;
+    }
+
+    public List<Session> getAllPatientSessions(int patientId) {
+        List<Session> sessions = new ArrayList<>();
+
+        SQLiteDatabase db = getReadDatabase();
+        String[] args = new String[] {String.valueOf(patientId)};
+        String sql = "SELECT * FROM session " +
+                "WHERE session.sessionId in " +
+                "(SELECT session_id FROM attending WHERE pateint_id = ?)";
+        Cursor c = db.rawQuery(sql, args);
+        if(c != null && c.getCount() > 0) {
+            c.moveToFirst();
+            Session session;
+            while(!c.isAfterLast()) {
+                session = new Session();
+
+                session.setSessionId(c.getInt(c.getColumnIndexOrThrow("sessionId")));
+                session.setDm_timeTaken(c.getInt(c.getColumnIndexOrThrow("dm_timeTaken")));
+                session.setDm_falsePos(c.getInt(c.getColumnIndexOrThrow("dm_falsePos")));
+                session.setDm_trueNeg(c.getInt(c.getColumnIndexOrThrow("dm_trueNeg")));
+                session.setSmd_timeTaken(c.getInt(c.getColumnIndexOrThrow("smd_timeTaken")));
+                session.setSmd_correctCars(c.getInt(c.getColumnIndexOrThrow("smd_correctCars")));
+                session.setSmd_correctLorries(c.getInt(c.getColumnIndexOrThrow("smd_correctLorries")));
+                session.setSmc_timeTaken(c.getInt(c.getColumnIndexOrThrow("smc_timeTaken")));
+                session.setSmc_redCars(c.getInt(c.getColumnIndexOrThrow("smc_redCars")));
+                session.setSmc_blueCars(c.getInt(c.getColumnIndexOrThrow("smc_blueCars")));
+                session.setRsr_timeTaken(c.getInt(c.getColumnIndexOrThrow("rsr_timeTaken")));
+                session.setRsr_correctSigns(c.getInt(c.getColumnIndexOrThrow("rsr_correctSigns")));
+                session.setTmt_timeTaken(c.getInt(c.getColumnIndexOrThrow("tmt_timeTaken")));
+
+                sessions.add(session);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
+        db.close();
+        return sessions;
+    }
+
     public Patient insertPatient(Patient patient) {
         SQLiteDatabase db = getWriteDatabase();
         ContentValues cv = new ContentValues();
@@ -104,6 +186,8 @@ public class DAO {
     public Session updateSession(Session session) {
         return null;
     }
+
+
 
     public void tmpAllPatients() {
         SQLiteDatabase db = getReadDatabase();

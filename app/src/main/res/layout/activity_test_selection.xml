@@ -20,8 +20,10 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="76dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="258dp"
@@ -32,45 +34,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <RadioButton
-                android:id="@+id/rb_tmt"
+            <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tmt"
-                tools:layout_editor_absoluteX="71dp"
-                tools:layout_editor_absoluteY="265dp" />
+                android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/rb_dc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dotCan"
-                tools:layout_editor_absoluteX="71dp"
-                tools:layout_editor_absoluteY="96dp" />
+                <RadioButton
+                    android:id="@+id/rb_tmt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tmt"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="265dp" />
 
-            <RadioButton
-                android:id="@+id/rb_rsr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/rsr"
-                tools:layout_editor_absoluteX="71dp"
-                tools:layout_editor_absoluteY="221dp" />
+                <RadioButton
+                    android:id="@+id/rb_dc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dotCan"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="96dp" />
 
-            <RadioButton
-                android:id="@+id/rb_smd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sqd"
-                tools:layout_editor_absoluteX="71dp"
-                tools:layout_editor_absoluteY="139dp" />
+                <RadioButton
+                    android:id="@+id/rb_rsr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/rsr"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="221dp" />
 
-            <RadioButton
-                android:id="@+id/rb_smc2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sqm"
-                tools:layout_editor_absoluteX="71dp"
-                tools:layout_editor_absoluteY="180dp" />
+                <RadioButton
+                    android:id="@+id/rb_smd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sqd"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="139dp" />
+
+                <RadioButton
+                    android:id="@+id/rb_smc2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sqm"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="180dp" />
+            </RadioGroup>
+
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 

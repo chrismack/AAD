@@ -3,6 +3,7 @@ package com.example.chris.coursework.setup;
 import android.content.Intent;
 
 import com.example.chris.coursework.selection.create.CreatePatientView;
+import com.example.chris.coursework.selection.existing.ExistingPatientView;
 
 /**
  * Created by Chris on 04/02/2018.
@@ -24,7 +25,7 @@ public class SetupPresenter implements SetupContract.ISetupPresenter{
 
     @Override
     public void showExistingPatients() {
-        Intent intent = new Intent();
+        Intent intent = new Intent(this.view, ExistingPatientView.class);
         this.view.startActivity(intent);
     }
 }

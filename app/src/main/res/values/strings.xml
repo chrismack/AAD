@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Coursework</string>
+    <string name="app_name">AAD</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -34,4 +34,8 @@
     <string name="tmt">Trail Making Test</string>
     <string name="testSelect">Select a Test</string>
     <string name="confirm">Confirm</string>
+    <string name="lastname">Last Name</string>
+    <string name="date_created">Date Created</string>
+    <string name="newSession">New Session</string>
+    <string name="contSession">Continue Session</string>
 </resources>

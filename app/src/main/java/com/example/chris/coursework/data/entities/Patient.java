@@ -1,7 +1,10 @@
 package com.example.chris.coursework.data.entities;
 
+import com.example.chris.coursework.common.Utils;
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Chris on 04/02/2018.
@@ -45,8 +48,12 @@ public class Patient {
         return dob;
     }
 
-    public void setDob(Calendar dob) {
-        this.dob = dob;
+    public void setDob(String dob) {
+        this.dob = Utils.createCalendarFrom(dob);
+    }
+
+    public void setDob(Calendar cal) {
+        this.dob = cal;
     }
 
     public String getAddress1() {
@@ -89,6 +96,14 @@ public class Patient {
         this.nhsNumber = nhsNumber;
     }
 
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
+
     private int id;
     private String firstName;
     private String lastName;
@@ -99,4 +114,7 @@ public class Patient {
     private String city;
     private String postcode;
     private String nhsNumber;
+
+    // Existing sessions
+    private List<Session> sessions;
 }

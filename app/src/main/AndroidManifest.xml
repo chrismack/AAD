@@ -23,19 +23,23 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".setup.SetupView"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".selection.create.CreatePatientView"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.TestSelectionView"
             android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".selection.existing.ExistingPatientView"
+            android:screenOrientation="landscape">
+
         </activity>
     </application>
 
