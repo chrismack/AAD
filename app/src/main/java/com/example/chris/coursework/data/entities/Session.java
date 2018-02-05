@@ -1,6 +1,7 @@
 package com.example.chris.coursework.data.entities;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Chris on 04/02/2018.
@@ -32,12 +33,10 @@ public class Session {
     // Trail making test
     private int tmt_timeTaken;
 
-    private Calendar creationDate;
-    private Calendar lastAttemptDate;
+    private Date creationDate;
+    private Date lastAttemptDate;
 
-    public Calendar getCreationDate() {
-        return creationDate;
-    }
+
 
     public void setSessionId(int sessionId) {
         this.sessionId = sessionId;
@@ -139,15 +138,19 @@ public class Session {
         this.tmt_timeTaken = tmt_timeTaken;
     }
 
-    public void setCreationDate(Calendar creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Calendar getLastAttemptDate() {
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public Date getLastAttemptDate() {
         return lastAttemptDate;
     }
 
-    public void setLastAttemptDate(Calendar lastAttemptDate) {
+    public void setLastAttemptDate(Date lastAttemptDate) {
         this.lastAttemptDate = lastAttemptDate;
     }
 

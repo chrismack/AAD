@@ -39,7 +39,9 @@ public class LoginPresenter implements LoginContract.ILoginPresenter{
     @Override
     public boolean attemptLogin(String username, String password) {
         if(!username.equals("") && !(password).equals("")) {
-            if(this.model.verifyPassword(username, password)) {
+            Therapist therapist;
+            if((therapist = this.model.verifyPassword(username, password)) != null) {
+                MainModel.getInstance(this.view.getApplicationContext()).setTherapist(therapist);
                 showSetup();
             } else {
                 setLoginError("Incorrect login details");
@@ -55,6 +57,7 @@ public class LoginPresenter implements LoginContract.ILoginPresenter{
 
     @Override
     public void showSetup() {
+
         Intent intent = new Intent(view, SetupView.class);
         view.startActivity(intent);
     }

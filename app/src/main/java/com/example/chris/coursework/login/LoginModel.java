@@ -21,7 +21,7 @@ public class LoginModel {
         this.presenter = presenter;
     }
 
-    public boolean verifyPassword(String email, String password) {
+    public Therapist verifyPassword(String email, String password) {
         DAO dao = MainModel.getInstance(presenter.getView().getApplicationContext()).getDAO();
 
         if(!dao.checkForTherapist(email)) {
@@ -44,15 +44,15 @@ public class LoginModel {
                 String storedPassword = sb.toString();
                 System.out.println(sb.toString());
                 if(therapist.getPassword().equals(storedPassword)) {
-                    return true;
+                    return therapist;
                 } else {
-                    return false;
+                    return null;
                 }
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
         }
 
-        return false;
+        return null;
     }
 }

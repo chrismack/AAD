@@ -4,6 +4,7 @@ import android.content.Context;
 import android.provider.ContactsContract;
 
 import com.example.chris.coursework.data.DAO;
+import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
 import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.data.entities.Therapist;
@@ -21,6 +22,7 @@ public class MainModel {
     private Therapist therapist;
     private Patient patient;
     private Session session;
+    private Attending attending;
 
     public MainModel(Context context) {
         this.context = context;
@@ -50,9 +52,23 @@ public class MainModel {
         this.patient = patient;
     }
 
+    public Patient getCurrentPatient() {
+        return this.patient;
+    }
+
     public void setSession(Session session) {
         this.session = session;
     }
 
+    public Session getCurrentSession() {
+        return this.session;
+    }
 
+    public Attending getAttending() {
+        return attending;
+    }
+
+    public void setAttending(Attending attending) {
+        this.attending = attending;
+    }
 }

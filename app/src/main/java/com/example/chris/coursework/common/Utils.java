@@ -41,4 +41,9 @@ public class Utils {
         String date = sdf.format(cal.getTime());
         return date;
     }
+
+    public static String stringFrom(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+        return sdf.format(date);
+    }
 }

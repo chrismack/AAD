@@ -3,15 +3,20 @@ package com.example.chris.coursework.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ReceiverCallNotAllowedException;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 
+import com.example.chris.coursework.common.Utils;
+import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
 import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.data.entities.Therapist;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -118,7 +123,7 @@ public class DAO {
         String[] args = new String[] {String.valueOf(patientId)};
         String sql = "SELECT * FROM session " +
                 "WHERE session.sessionId in " +
-                "(SELECT session_id FROM attending WHERE pateint_id = ?)";
+                "(SELECT session_id FROM attending WHERE patient_id = ?)";
         Cursor c = db.rawQuery(sql, args);
         if(c != null && c.getCount() > 0) {
             c.moveToFirst();
@@ -139,6 +144,9 @@ public class DAO {
                 session.setRsr_timeTaken(c.getInt(c.getColumnIndexOrThrow("rsr_timeTaken")));
                 session.setRsr_correctSigns(c.getInt(c.getColumnIndexOrThrow("rsr_correctSigns")));
                 session.setTmt_timeTaken(c.getInt(c.getColumnIndexOrThrow("tmt_timeTaken")));
+
+                session.setCreationDate(Utils.createCalendarFrom(c.getString(c.getColumnIndexOrThrow("creationDate"))).getTime());
+                session.setLastAttemptDate(Utils.createCalendarFrom(c.getString(c.getColumnIndexOrThrow("lastAttempt"))).getTime());
 
                 sessions.add(session);
                 c.moveToNext();
@@ -178,13 +186,85 @@ public class DAO {
         return patient;
     }
 
-    public Session createSession(Session session) {
+    private ContentValues setSessionContentValues(Session session) {
+        Calendar cal = Calendar.getInstance();
+        if(session.getCreationDate() != null) {
+            cal.setTime(session.getCreationDate());
+        }
+        String creation = Utils.calendarToString(cal);
+        if(session.getLastAttemptDate() != null) {
+            cal.setTime(session.getLastAttemptDate());
+        }
+        String lastAttempt = Utils.calendarToString(cal);
 
-        return null;
+        ContentValues cv = new ContentValues();
+        cv.put("dm_timeTaken", session.getDm_timeTaken());
+        cv.put("dm_falsePos", session.getDm_falsePos());
+        cv.put("dm_trueNeg", session.getDm_trueNeg());
+        cv.put("smd_timeTaken", session.getSmd_timeTaken());
+        cv.put("smd_correctCars", session.getSmd_correctCars());
+        cv.put("smd_correctLorries", session.getSmd_correctLorries());
+        cv.put("smc_timeTaken", session.getSmc_timeTaken());
+        cv.put("smc_redCars", session.getSmc_redCars());
+        cv.put("smc_blueCars", session.getSmc_blueCars());
+        cv.put("rsr_timeTaken", session.getRsr_timeTaken());
+        cv.put("rsr_correctSigns", session.getRsr_correctSigns());
+        cv.put("tmt_timeTaken", session.getTmt_timeTaken());
+        cv.put("creationDate", creation);
+        cv.put("lastAttempt", lastAttempt);
+
+        return cv;
+    }
+
+    public Session createSession(Session session) {
+        SQLiteDatabase db = getWriteDatabase();
+
+        ContentValues cv = setSessionContentValues(session);
+
+        long id = db.insert(
+                DatabaseSchema.SESSION,
+                null,
+                cv
+        );
+
+        session.setSessionId((int) id);
+        return session;
     }
 
     public Session updateSession(Session session) {
-        return null;
+        SQLiteDatabase db = getWriteDatabase();
+
+        ContentValues cv = setSessionContentValues(session);
+        cv.put("sessionId", session.getSessionId());
+
+        String whereClause = "sessionId = ?";
+        String[] whereArg = new String[] {String.valueOf(session.getSessionId())};
+
+        long id = db.update(
+                DatabaseSchema.SESSION,
+                cv,
+                whereClause,
+                whereArg
+        );
+
+        session.setSessionId((int) id);
+        return session;
+    }
+
+    public Attending createNewMeeting(Attending attending) {
+        SQLiteDatabase db = getWriteDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("therapist_email", attending.getTherapist().getEmail());
+        cv.put("patient_id", attending.getPatient().getId());
+        cv.put("session_id", attending.getSession().getSessionId());
+
+        db.insert(
+                DatabaseSchema.ATTENDING,
+                null,
+                cv
+        );
+
+        return attending;
     }
 
 
@@ -245,4 +325,25 @@ public class DAO {
     }
 
 
+    public boolean attendingExists(Attending attending) {
+        SQLiteDatabase db = getReadDatabase();
+
+        String whereClause = "therapist_email = ? AND patient_id = ? AND session_id = ?";
+        String[] whereArg = new String[] {
+                attending.getTherapist().getEmail(),
+                String.valueOf(attending.getPatient().getId()),
+                String.valueOf(attending.getSession().getSessionId())
+        };
+        Cursor c = db.query(
+                DatabaseSchema.ATTENDING,
+                null,
+                whereClause,
+                whereArg,
+                null,
+                null,
+                null
+        );
+
+        return (c != null && c.getCount() > 0);
+    }
 }
