@@ -29,10 +29,12 @@
         </activity>
         <activity
             android:name=".setup.SetupView"
-            android:screenOrientation="landscape">
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".selection.create.CreatePatientView"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".selection.tests.TestSelectionView"
             android:screenOrientation="landscape">
         </activity>
     </application>

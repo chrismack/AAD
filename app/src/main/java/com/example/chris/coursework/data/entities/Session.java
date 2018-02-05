@@ -1,38 +1,46 @@
 package com.example.chris.coursework.data.entities;
 
+import java.util.Calendar;
+
 /**
  * Created by Chris on 04/02/2018.
  */
 
 public class Session {
+
+
     private int sessionId;
-    private int testId;
+    // Dot Matrix
     private int dm_timeTaken;
     private int dm_falsePos;
     private int dm_trueNeg;
+
+    // Square Matrices Direction
     private int smd_timeTaken;
     private int smd_correctCars;
     private int smd_correctLorries;
+
+    // Square Matrices Compass
     private int smc_timeTaken;
     private int smc_redCars;
     private int smc_blueCars;
+
+    // Road sign recognition
     private int rsr_timeTaken;
     private int rsr_correctSigns;
 
-    public int getSessionId() {
-        return sessionId;
+    // Trail making test
+    private int tmt_timeTaken;
+
+    private Calendar creationDate;
+    private Calendar lastAttemptDate;
+
+    public Calendar getCreationDate() {
+        return creationDate;
     }
 
     public void setSessionId(int sessionId) {
         this.sessionId = sessionId;
-    }
-
-    public int getTestId() {
-        return testId;
-    }
-
-    public void setTestId(int testId) {
-        this.testId = testId;
     }
 
     public int getDm_timeTaken() {
@@ -131,5 +139,21 @@ public class Session {
         this.tmt_timeTaken = tmt_timeTaken;
     }
 
-    private int tmt_timeTaken;
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Calendar getLastAttemptDate() {
+        return lastAttemptDate;
+    }
+
+    public void setLastAttemptDate(Calendar lastAttemptDate) {
+        this.lastAttemptDate = lastAttemptDate;
+    }
+
+    public int getSessionId() {
+        return sessionId;
+    }
+
+
 }

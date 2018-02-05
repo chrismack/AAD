@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chris.coursework.selection.tests.TestSelectionView">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/testSelect"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="76dp">
+
+        <LinearLayout
+            android:layout_width="258dp"
+            android:layout_height="167dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="88dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_tmt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tmt"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="265dp" />
+
+            <RadioButton
+                android:id="@+id/rb_dc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dotCan"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="96dp" />
+
+            <RadioButton
+                android:id="@+id/rb_rsr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rsr"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="221dp" />
+
+            <RadioButton
+                android:id="@+id/rb_smd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sqd"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="139dp" />
+
+            <RadioButton
+                android:id="@+id/rb_smc2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sqm"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="180dp" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="153dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="96dp"
+        android:layout_marginStart="80dp"
+        android:text="@string/confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

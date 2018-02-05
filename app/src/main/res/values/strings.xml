@@ -25,6 +25,13 @@
     <string name="postcode">Postcode</string>
     <string name="dob">Date Of Birth</string>
     <string name="nhsNo">NHS Number</string>
-    <string name="subNewPatient" >Submit</string>
+    <string name="subNewPatient">Submit</string>
     <string name="submit">Submit</string>
+    <string name="dotCan">Dot Cancelation</string>
+    <string name="sqd">Square Matrices Direction</string>
+    <string name="sqm">Square Matrices Compass</string>
+    <string name="rsr">Road Sign Recognition</string>
+    <string name="tmt">Trail Making Test</string>
+    <string name="testSelect">Select a Test</string>
+    <string name="confirm">Confirm</string>
 </resources>

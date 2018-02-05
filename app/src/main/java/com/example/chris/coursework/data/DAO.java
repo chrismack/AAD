@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.chris.coursework.data.entities.Patient;
+import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.data.entities.Therapist;
 
 import java.text.SimpleDateFormat;
@@ -95,6 +96,15 @@ public class DAO {
         return patient;
     }
 
+    public Session createSession(Session session) {
+
+        return null;
+    }
+
+    public Session updateSession(Session session) {
+        return null;
+    }
+
     public void tmpAllPatients() {
         SQLiteDatabase db = getReadDatabase();
         Cursor c = db.query(DatabaseSchema.PATIENT,
@@ -111,8 +121,43 @@ public class DAO {
             System.out.println(c.getInt(c.getColumnIndexOrThrow("id")));
             System.out.println(c.getString(c.getColumnIndexOrThrow("firstName")));
         }
+    }
 
+    public boolean checkForTherapist(String email) {
+        SQLiteDatabase db = getReadDatabase();
+        String whereClause = "email = ?";
+        String[] whereArg = new String[] {email};
+        Cursor c = db.query(
+                DatabaseSchema.THERAPIST,
+                null,
+                whereClause,
+                whereArg,
+                null,
+                null,
+                null
+                );
 
+        return (c != null && c.getCount() > 0);
+
+    }
+
+    public void tmpInsertLogin() {
+        SQLiteDatabase db = getWriteDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("email", "foo@example.com");
+        cv.put("firstName", "Chris");
+        cv.put("lastName", "Mack");
+        cv.put("password", "c729eaf54df19d13da8a6b99c6c977e5e804f60f398f36f5efae3031d15b6a23");
+        cv.put("salt", "1");
+
+        long id = db.insert(
+                DatabaseSchema.THERAPIST,
+                null,
+                cv
+        );
+
+        db.close();
     }
 
 

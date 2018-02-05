@@ -23,6 +23,11 @@ public class LoginModel {
 
     public boolean verifyPassword(String email, String password) {
         DAO dao = MainModel.getInstance(presenter.getView().getApplicationContext()).getDAO();
+
+        if(!dao.checkForTherapist(email)) {
+            dao.tmpInsertLogin();
+        }
+
         Therapist therapist = dao.getTherapist(email);
 
         if(therapist != null) {
@@ -37,7 +42,7 @@ public class LoginModel {
                 }
 
                 String storedPassword = sb.toString();
-
+                System.out.println(sb.toString());
                 if(therapist.getPassword().equals(storedPassword)) {
                     return true;
                 } else {

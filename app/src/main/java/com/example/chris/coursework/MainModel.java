@@ -1,9 +1,11 @@
 package com.example.chris.coursework;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 
 import com.example.chris.coursework.data.DAO;
 import com.example.chris.coursework.data.entities.Patient;
+import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.data.entities.Therapist;
 
 /**
@@ -18,11 +20,11 @@ public class MainModel {
 
     private Therapist therapist;
     private Patient patient;
+    private Session session;
 
     public MainModel(Context context) {
         this.context = context;
         database = new DAO(this.context);
-        database.tmpAllPatients();
     }
 
     public static MainModel getInstance(Context context) {
@@ -46,6 +48,10 @@ public class MainModel {
 
     public void setCurrentPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 
 

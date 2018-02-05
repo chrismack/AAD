@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.common.Utils;
 import com.example.chris.coursework.data.entities.Patient;
+import com.example.chris.coursework.selection.tests.TestSelectionView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,9 +114,8 @@ public class CreatePatientPresenter implements CreatePatientContract.ICreatePati
         this.model.insertPatient(patient);
         MainModel.getInstance(this.view.getApplicationContext()).setCurrentPatient(patient);
 
-        //Todo: create test selection
-        //Intent intent = new Intent();
-        //this.view.startActivity(intent);
+        Intent intent = new Intent(this.view, TestSelectionView.class);
+        this.view.startActivity(intent);
     }
 
     @Override

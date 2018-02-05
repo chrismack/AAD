@@ -62,7 +62,6 @@ public class DatabaseSchema extends SQLiteOpenHelper {
     private static final String CREATE_SESSION =
             CREATE_TABLE + SESSION + " ( " +
                     "sessionId" + TYPE_INT + NOT_NULL + PRIMARY_KEY + AUTOINCREMENT + COMMA_SPACE +
-                    "testId" + TYPE_INT + NOT_NULL + COMMA_SPACE +
                     "dm_timeTaken" + TYPE_INT + COMMA_SPACE +
                     "dm_falsePos" + TYPE_INT + COMMA_SPACE +
                     "dm_trueNeg" + TYPE_INT + COMMA_SPACE +
@@ -74,7 +73,9 @@ public class DatabaseSchema extends SQLiteOpenHelper {
                     "smc_blueCars" + TYPE_INT + COMMA_SPACE +
                     "rsr_timeTaken" + TYPE_INT + COMMA_SPACE +
                     "rsr_correctSigns" + TYPE_INT + COMMA_SPACE +
-                    "tmt_timeTaken" + TYPE_INT  +
+                    "tmt_timeTaken" + TYPE_INT  + COMMA_SPACE +
+                    "creationDate" + TYPE_DATE + COMMA_SPACE +
+                    "lastAttempt" + TYPE_DATE +
                     ")";
 
     private static final String CREATE_ATTENDING =
