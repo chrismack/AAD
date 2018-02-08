@@ -31,7 +31,8 @@ public class Session {
     private int rsr_correctSigns;
 
     // Trail making test
-    private int tmt_timeTaken;
+    private long tmt_timeTakenA;
+    private long tmt_timeTakenB;
 
     private Date creationDate;
     private Date lastAttemptDate;
@@ -130,12 +131,20 @@ public class Session {
         this.rsr_correctSigns = rsr_correctSigns;
     }
 
-    public int getTmt_timeTaken() {
-        return tmt_timeTaken;
+    public long getTmt_timeTakenA() {
+        return tmt_timeTakenA;
     }
 
-    public void setTmt_timeTaken(int tmt_timeTaken) {
-        this.tmt_timeTaken = tmt_timeTaken;
+    public void setTmt_timeTakenA(long tmt_timeTakenA) {
+        this.tmt_timeTakenA = tmt_timeTakenA;
+    }
+
+    public long getTmt_timeTakenB() {
+        return tmt_timeTakenB;
+    }
+
+    public void setTmt_timeTakenB(long tmt_timeTakenB) {
+        this.tmt_timeTakenB = tmt_timeTakenB;
     }
 
     public void setCreationDate(Date creationDate) {
@@ -157,6 +166,4 @@ public class Session {
     public int getSessionId() {
         return sessionId;
     }
-
-
 }

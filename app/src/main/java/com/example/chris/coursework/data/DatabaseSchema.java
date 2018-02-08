@@ -73,7 +73,8 @@ public class DatabaseSchema extends SQLiteOpenHelper {
                     "smc_blueCars" + TYPE_INT + COMMA_SPACE +
                     "rsr_timeTaken" + TYPE_INT + COMMA_SPACE +
                     "rsr_correctSigns" + TYPE_INT + COMMA_SPACE +
-                    "tmt_timeTaken" + TYPE_INT  + COMMA_SPACE +
+                    "tmt_timeTakenA" + TYPE_INT  + COMMA_SPACE +
+                    "tmt_timeTakenB" + TYPE_INT  + COMMA_SPACE +
                     "creationDate" + TYPE_DATE + COMMA_SPACE +
                     "lastAttempt" + TYPE_DATE +
                     ")";

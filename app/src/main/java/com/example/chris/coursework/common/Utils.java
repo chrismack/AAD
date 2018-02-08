@@ -4,8 +4,14 @@ import android.widget.DatePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import static java.util.Collections.*;
 
 /**
  * Created by Chris on 04/02/2018.
@@ -46,4 +52,10 @@ public class Utils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
         return sdf.format(date);
     }
+
+    public static List<?> randomiseList(List<?> list) {
+        Collections.shuffle(list);
+        return list;
+    }
+
 }

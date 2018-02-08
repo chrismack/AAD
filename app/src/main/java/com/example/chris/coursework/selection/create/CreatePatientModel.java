@@ -1,7 +1,9 @@
 package com.example.chris.coursework.selection.create;
 
 import com.example.chris.coursework.data.DAO;
+import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
+import com.example.chris.coursework.data.entities.Session;
 
 import java.util.Calendar;
 
@@ -12,6 +14,8 @@ import java.util.Calendar;
 public class CreatePatientModel {
 
     private CreatePatientPresenter presenter;
+
+    private Patient patient;
 
     private DAO dao;
 
@@ -69,5 +73,21 @@ public class CreatePatientModel {
 
     public Patient insertPatient(Patient patient) {
         return this.dao.insertPatient(patient);
+    }
+
+    public Session saveSession(Session session) {
+        return this.dao.createSession(session);
+    }
+
+    public Attending createAttending(Attending attending) {
+        return this.dao.createNewMeeting(attending);
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

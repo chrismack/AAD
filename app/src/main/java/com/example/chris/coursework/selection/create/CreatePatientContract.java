@@ -6,7 +6,9 @@ import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.DatePicker;
 
+import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
+import com.example.chris.coursework.data.entities.Session;
 
 /**
  * Created by Chris on 04/02/2018.
@@ -24,6 +26,8 @@ public interface CreatePatientContract {
         void confirmPatient(Patient patient);
 
         CreatePatientView getView();
+
+        Attending createAttendance(Session session);
     }
 
     interface ICreatePatientView {

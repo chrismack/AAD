@@ -23,6 +23,7 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,11 +35,19 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.TestSelectionView"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:noHistory="true">
         </activity>
         <activity
             android:name=".selection.existing.ExistingPatientView"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:noHistory="true">
+        </activity>
+        <activity
+            android:name=".selection.tests.tmt.TrailMakingView"
+            android:adjustViewBounds="true"
+            android:screenOrientation="portrait"
+            android:noHistory="true">
 
         </activity>
     </application>

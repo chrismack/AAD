@@ -143,7 +143,8 @@ public class DAO {
                 session.setSmc_blueCars(c.getInt(c.getColumnIndexOrThrow("smc_blueCars")));
                 session.setRsr_timeTaken(c.getInt(c.getColumnIndexOrThrow("rsr_timeTaken")));
                 session.setRsr_correctSigns(c.getInt(c.getColumnIndexOrThrow("rsr_correctSigns")));
-                session.setTmt_timeTaken(c.getInt(c.getColumnIndexOrThrow("tmt_timeTaken")));
+                session.setTmt_timeTakenA(c.getInt(c.getColumnIndexOrThrow("tmt_timeTakenA")));
+                session.setTmt_timeTakenB(c.getInt(c.getColumnIndexOrThrow("tmt_timeTakenB")));
 
                 session.setCreationDate(Utils.createCalendarFrom(c.getString(c.getColumnIndexOrThrow("creationDate"))).getTime());
                 session.setLastAttemptDate(Utils.createCalendarFrom(c.getString(c.getColumnIndexOrThrow("lastAttempt"))).getTime());
@@ -209,7 +210,8 @@ public class DAO {
         cv.put("smc_blueCars", session.getSmc_blueCars());
         cv.put("rsr_timeTaken", session.getRsr_timeTaken());
         cv.put("rsr_correctSigns", session.getRsr_correctSigns());
-        cv.put("tmt_timeTaken", session.getTmt_timeTaken());
+        cv.put("tmt_timeTakenA", session.getTmt_timeTakenA());
+        cv.put("tmt_timeTakenB", session.getTmt_timeTakenB());
         cv.put("creationDate", creation);
         cv.put("lastAttempt", lastAttempt);
 

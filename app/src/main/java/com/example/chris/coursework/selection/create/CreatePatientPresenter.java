@@ -6,11 +6,15 @@ import android.content.Intent;
 
 import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.common.Utils;
+import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
+import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.TestSelectionView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,7 +44,6 @@ public class CreatePatientPresenter implements CreatePatientContract.ICreatePati
                 this.view.getCity().getText().toString(),
                 this.view.getPostcode().getText().toString()
         );
-
         String errors = this.model.checkPatientErrors(patient);
 
         // If errors string is empty no errors found
@@ -111,11 +114,40 @@ public class CreatePatientPresenter implements CreatePatientContract.ICreatePati
 
     @Override
     public void confirmPatient(Patient patient) {
+        this.model.setPatient(patient);
         this.model.insertPatient(patient);
         MainModel.getInstance(this.view.getApplicationContext()).setCurrentPatient(patient);
 
+        Session session = new Session();
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+
+        session.setCreationDate(date);
+        session.setLastAttemptDate(date);
+        session = this.model.saveSession(session);
+
+        Attending attending = this.createAttendance(session);
+        MainModel.getInstance(this.view.getApplicationContext()).setAttending(attending);
+        this.model.createAttending(attending);
+
+        MainModel.getInstance(this.view.getApplicationContext()).setSession(session);
+        MainModel.getInstance(this.view.getApplicationContext()).setCurrentPatient(patient);
+        MainModel.getInstance(this.view.getApplicationContext()).setAttending(attending);
+
         Intent intent = new Intent(this.view, TestSelectionView.class);
         this.view.startActivity(intent);
+    }
+
+    @Override
+    public Attending createAttendance(Session session) {
+        MainModel mainModel = MainModel.getInstance(this.view.getApplicationContext());
+
+        Attending attending = new Attending();
+        attending.setTherapist(mainModel.getTherapist());
+        attending.setPatient(this.model.getPatient());
+        attending.setSession(session);
+
+        return attending;
     }
 
     @Override

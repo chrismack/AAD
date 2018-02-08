@@ -71,4 +71,9 @@ public class MainModel {
     public void setAttending(Attending attending) {
         this.attending = attending;
     }
+
+    public Session updateSession(Session session) {
+        return this.getDAO().updateSession(session);
+    }
+
 }
