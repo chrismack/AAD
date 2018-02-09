@@ -39,4 +39,6 @@
     <string name="newSession">New Session</string>
     <string name="contSession">Continue Session</string>
     <string name="finish">Finish</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
 </resources>

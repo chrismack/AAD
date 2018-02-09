@@ -1,4 +1,4 @@
-package com.example.chris.coursework.selection.tests.tmt;
+package com.example.chris.coursework.selection.tests.games.tmt;
 
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +31,7 @@ public class TrailMakingPresenter implements TrailMakingContract.ITrailMakingPre
         this.model = new TrailMakingModel(this);
         this.context = view.getApplicationContext();
 
-        this.model.runTrailMaking();
+        this.model.runTest();
 
 //        model.regionsTest(count, model.getImageWidth() / 2 + 10, model.getImageHeight() / 2 + 10, 1594 - 150, 2058 - 150);
 
@@ -95,7 +95,7 @@ public class TrailMakingPresenter implements TrailMakingContract.ITrailMakingPre
 
     @Override
     public void nextState() {
-        this.model.runTrailMaking();
+        this.model.runTest();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.chris.coursework.selection.tests.tmt;
+package com.example.chris.coursework.selection.tests.games.tmt;
 
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -7,6 +7,11 @@ import com.example.chris.coursework.common.Pair;
 import com.example.chris.coursework.common.Timer;
 import com.example.chris.coursework.common.Utils;
 import com.example.chris.coursework.common.views.DrawingView;
+import com.example.chris.coursework.selection.tests.games.IState;
+import com.example.chris.coursework.selection.tests.games.IStateManager;
+import com.example.chris.coursework.selection.tests.games.TestBase;
+
+import junit.framework.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +21,9 @@ import java.util.Random;
  * Created by Chris on 06/02/2018.
  */
 
-public class TrailMakingModel {
+public class TrailMakingModel extends TestBase {
 
     private TrailMakingPresenter presenter;
-    private StateManager stateManager;
-    private StateManager.State state;
 
 
     private Paint paintSettings;
@@ -36,9 +39,11 @@ public class TrailMakingModel {
     private List<Pair<Integer, Integer>> imagePositions;
 
     public TrailMakingModel(TrailMakingPresenter presenter) {
+        super();
         this.presenter = presenter;
-        this.stateManager = new StateManager(this, this.presenter);
-        this.state = StateManager.State.PracticeA;
+        StateManager stateManager = new StateManager(this, presenter);
+        setStateManager(stateManager.getClass());
+        setState(StateManager.State.PracticeA);
 
         this.testATimer = new Timer();
         this.testBTimer = new Timer();
@@ -54,14 +59,6 @@ public class TrailMakingModel {
 
         this.drawView = new DrawingView(presenter.getView(), this.paintSettings);
         this.imagePositions = new ArrayList<>();
-    }
-
-    public StateManager getStateManager() {
-        return stateManager;
-    }
-
-    public void setStateManager(StateManager stateManager) {
-        this.stateManager = stateManager;
     }
 
     public Paint getPaintSettings() {
@@ -92,10 +89,10 @@ public class TrailMakingModel {
         return imageHeight;
     }
 
-    public void runTrailMaking() {
-        this.state = this.state.runState();
-        if(this.state == StateManager.State.PracticeB) {
-            this.state = this.state.runState();
+    public void runTest() {
+        super.runTest();
+        if(getState() == StateManager.State.PracticeB) {
+            super.runTest();
         }
     }
 
@@ -116,8 +113,8 @@ public class TrailMakingModel {
     }
 
     public void testTouched() {
-        if(this.state == StateManager.State.TimingA || this.state == StateManager.State.TimingB) {
-            this.state = this.state.runState();
+        if(getState() == StateManager.State.TimingA || getState() == StateManager.State.TimingB) {
+            setState((Enum<? extends IState>) ((IState)getState()).runState());
         }
     }
 

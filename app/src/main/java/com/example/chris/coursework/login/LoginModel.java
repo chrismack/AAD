@@ -24,7 +24,7 @@ public class LoginModel {
     public Therapist verifyPassword(String email, String password) {
         DAO dao = MainModel.getInstance(presenter.getView().getApplicationContext()).getDAO();
 
-        if(!dao.checkForTherapist(email)) {
+        if(!dao.checkForTherapist("foo@example.com")) {
             dao.tmpInsertLogin();
         }
 

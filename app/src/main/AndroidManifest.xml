@@ -35,19 +35,25 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.TestSelectionView"
-            android:screenOrientation="landscape"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="landscape">
+
         </activity>
         <activity
             android:name=".selection.existing.ExistingPatientView"
-            android:screenOrientation="landscape"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="landscape">
+
         </activity>
         <activity
-            android:name=".selection.tests.tmt.TrailMakingView"
+            android:name=".selection.tests.games.tmt.TrailMakingView"
             android:adjustViewBounds="true"
-            android:screenOrientation="portrait"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".selection.tests.games.dm.DotMatrixView"
+            android:screenOrientation="landscape">
 
         </activity>
     </application>

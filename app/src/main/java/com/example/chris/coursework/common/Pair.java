@@ -36,7 +36,7 @@ public class Pair<L, R> {
     }
 
     public void setFirst(L first) {
-        this.left = left;
+        this.left = first;
     }
 
     public R getLast() {
@@ -44,7 +44,7 @@ public class Pair<L, R> {
     }
 
     public void setLast(R last) {
-        this.right = right;
+        this.right = last;
     }
 
     @Override

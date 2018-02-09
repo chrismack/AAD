@@ -1,4 +1,4 @@
-package com.example.chris.coursework.selection.tests.tmt;
+package com.example.chris.coursework.selection.tests.games.tmt;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;

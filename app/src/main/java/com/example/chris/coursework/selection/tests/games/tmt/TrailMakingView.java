@@ -1,22 +1,12 @@
-package com.example.chris.coursework.selection.tests.tmt;
+package com.example.chris.coursework.selection.tests.games.tmt;
 
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.graphics.Canvas;
-import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.chris.coursework.R;
-import com.example.chris.coursework.common.views.DrawingView;
-
-import java.util.List;
 
 public class TrailMakingView extends AppCompatActivity implements TrailMakingContract.ITrailMakingView{
 

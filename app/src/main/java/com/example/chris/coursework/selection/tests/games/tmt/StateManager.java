@@ -1,30 +1,35 @@
-package com.example.chris.coursework.selection.tests.tmt;
+package com.example.chris.coursework.selection.tests.games.tmt;
+
+import com.example.chris.coursework.selection.tests.TestSelectionView;
+import com.example.chris.coursework.selection.tests.games.IState;
+import com.example.chris.coursework.selection.tests.games.IStateManager;
 
 /**
  * Created by Chris on 06/02/2018.
  */
 
-public class StateManager {
+public class StateManager implements IStateManager{
 
     private static TrailMakingModel model;
     private static TrailMakingPresenter presenter;
+
 
     public StateManager(TrailMakingModel model, TrailMakingPresenter presenter) {
         this.model = model;
         this.presenter = presenter;
     }
 
-    public enum State {
+    public enum State implements IState {
         PracticeA {
             @Override
-            State runState() {
+            public State runState() {
                 presenter.buildTestArea(10, false);
                 return ReadyA;
             }
         },
         ReadyA {
             @Override
-            State runState() {
+            public State runState() {
                 presenter.buildTestArea(25, false);
                 presenter.disableFinish();
                 return TimingA;
@@ -32,7 +37,7 @@ public class StateManager {
         },
         TimingA {
             @Override
-            State runState() {
+            public State runState() {
                 model.getTestATimer().startTimer(System.currentTimeMillis());
                 presenter.enableFinish();
                 return FinsiedA;
@@ -40,21 +45,21 @@ public class StateManager {
         },
         FinsiedA {
             @Override
-            State runState() {
+            public State runState() {
                 model.getTestATimer().endTimer(System.currentTimeMillis());
                 return PracticeB;
             }
         },
         PracticeB {
             @Override
-            State runState() {
+            public State runState() {
                 presenter.buildTestArea(10, true);
                 return ReadyB;
             }
         },
         ReadyB {
             @Override
-            State runState() {
+            public State runState() {
                 presenter.buildTestArea(25, true);
                 presenter.disableFinish();
                 return TimingB;
@@ -62,7 +67,7 @@ public class StateManager {
         },
         TimingB {
             @Override
-            State runState() {
+            public State runState() {
                 model.getTestBTimer().startTimer(System.currentTimeMillis());
                 presenter.enableFinish();
                 return FinsiedB;
@@ -70,13 +75,16 @@ public class StateManager {
         },
         FinsiedB {
             @Override
-            State runState() {
+            public State runState() {
                 model.getTestBTimer().endTimer(System.currentTimeMillis());
-                presenter.finishTest();
+                model.finishTest(presenter.getContext());
                 return null;
             }
         };
 
-        abstract State runState();
+        @Override
+        public abstract Enum<State> runState();
     }
+
+
 }

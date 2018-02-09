@@ -1,12 +1,11 @@
 package com.example.chris.coursework.selection.tests;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.R;
-import com.example.chris.coursework.selection.tests.tmt.TrailMakingView;
+import com.example.chris.coursework.selection.tests.games.dm.DotMatrixView;
+import com.example.chris.coursework.selection.tests.games.tmt.TrailMakingView;
 
 /**
  * Created by Chris on 05/02/2018.
@@ -38,6 +37,7 @@ public class TestSelectionPresenter implements TestSelectionContract.ITestSelect
 
         switch(this.view.getRg_testSelection().getCheckedRadioButtonId()) {
             case R.id.rb_dc:
+                nextActivity = DotMatrixView.class;
                 break;
             case R.id.rb_smd:
                 break;

@@ -27,6 +27,7 @@ public class DrawingView  extends View {
     private Paint pointerSettings;
     private Path pointerPath;
 
+    private boolean disbaled = false;
 
 
     public DrawingView(Context context) {
@@ -43,6 +44,10 @@ public class DrawingView  extends View {
         this.pointerSettings.setColor(Color.BLUE);
         this.pointerSettings.setStyle(Paint.Style.STROKE);
         this.pointerSettings.setStrokeWidth(4f);
+
+        if(this.paintOptions == null) {
+            this.paintOptions = new Paint();
+        }
     }
 
     public DrawingView(Context context, Paint paintStyle) {
@@ -74,22 +79,24 @@ public class DrawingView  extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
-        float x = event.getX();
-        float y = event.getY();
+        if(!disbaled) {
+            float x = event.getX();
+            float y = event.getY();
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                touch_start(x, y);
-                invalidate();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                touch_move(x, y);
-                invalidate();
-                break;
-            case MotionEvent.ACTION_UP:
-                touch_up();
-                invalidate();
-                break;
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    touch_start(x, y);
+                    invalidate();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    touch_move(x, y);
+                    invalidate();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    touch_up();
+                    invalidate();
+                    break;
+            }
         }
         return true;
     }
@@ -135,5 +142,13 @@ public class DrawingView  extends View {
 
     public void setPointerSettings(Paint pointerSettings) {
         this.pointerSettings = pointerSettings;
+    }
+
+    public void enable() {
+        this.disbaled = false;
+    }
+
+    public void disbale() {
+        this.disbaled = true;
     }
 }
