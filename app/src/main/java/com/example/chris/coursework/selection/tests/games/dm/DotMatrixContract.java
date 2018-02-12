@@ -32,6 +32,8 @@ public interface DotMatrixContract {
 
         void showReviewing();
 
+        DotMatrixView getView();
+
 
     }
 

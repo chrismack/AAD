@@ -54,6 +54,7 @@ public class DotMatrixModel extends TestBase {
     private final float sec2GroupWidth = sec2Width / section2TotalXDots;
     private final float sec2GroupHeight = sec2Height / section2TotalYDots;
 
+
     // Answers
     final int[][] section1Answers = {
             {5, 5, 3, 4, 3, 4, 3, 3, 3, 3, 5, 5, 5, 5, 5, 3, 5, 3, 5, 4, 5, 3, 4, 5, 3},
@@ -164,7 +165,7 @@ public class DotMatrixModel extends TestBase {
         int trueNeg = errors.getLast();
         int timeTaken = timeTakenSeconds;
 
-        MainModel mainModel = MainModel.getInstance(this.presenter.getContext());
+        MainModel mainModel = MainModel.getInstance(this.presenter.getView());
 
         Session session = mainModel.getCurrentSession();
         session.setDm_timeTaken(timeTaken);

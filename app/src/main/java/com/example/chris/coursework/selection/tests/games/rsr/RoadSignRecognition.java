@@ -24,6 +24,8 @@ import java.util.Random;
 
 public class RoadSignRecognition extends AppCompatActivity {
 
+    private RoadSignRecognition currentView;
+
     Integer roadSigns[] = {R.drawable.sign1, R.drawable.sign2,R.drawable.sign3,R.drawable.sign4,R.drawable.sign5,R.drawable.sign6,R.drawable.sign7,R.drawable.sign8,R.drawable.sign9,R.drawable.sign10,R.drawable.sign11,R.drawable.sign12,R.drawable.rsrexampleanswer};
 
     ArrayList<Integer> roadSignsArrayList = new ArrayList<>();
@@ -46,6 +48,7 @@ public class RoadSignRecognition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_road_sign_recognition);
 
+        currentView = this;
 
         timer = new CountDownTimer(300000, 1000) {
 
@@ -125,7 +128,7 @@ public class RoadSignRecognition extends AppCompatActivity {
                 {
                     finalScore = getScore();
                     timer.cancel();
-                    MainModel mainModel = MainModel.getInstance(getApplicationContext());
+                    MainModel mainModel = MainModel.getInstance(currentView);
                     Session session = mainModel.getCurrentSession();
                     session.setRsr_correctSigns(finalScore);
                     session.setRsr_timeTaken(timeTakenSeconds);

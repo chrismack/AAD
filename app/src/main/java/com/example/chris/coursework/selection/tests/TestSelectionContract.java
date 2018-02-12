@@ -14,6 +14,8 @@ public interface TestSelectionContract {
         void testChanged();
 
         void testConfirmed();
+
+        void showReview();
     }
 
     interface ITestSelectionView {
@@ -26,5 +28,7 @@ public interface TestSelectionContract {
         void setBtn_testConfirm(Button btn_testConfirm);
 
         void onTestConfirmed(View view);
+
+        void onReview(View view);
     }
 }

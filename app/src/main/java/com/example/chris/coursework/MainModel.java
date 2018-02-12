@@ -1,7 +1,8 @@
 package com.example.chris.coursework;
 
 import android.content.Context;
-import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.chris.coursework.data.DAO;
 import com.example.chris.coursework.data.entities.Attending;
@@ -17,27 +18,32 @@ public class MainModel {
     private static MainModel instance = null;
 
     private DAO database = null;
-    private Context context;
+    private static Context context;
+    private static AppCompatActivity view;
 
     private Therapist therapist;
     private Patient patient;
     private Session session;
     private Attending attending;
 
-    public MainModel(Context context) {
-        this.context = context;
-        database = new DAO(this.context);
+    public MainModel(AppCompatActivity view) {
+        this.view = view;
+        this.context = view.getApplicationContext();
+        database = new DAO(view);
     }
 
-    public static MainModel getInstance(Context context) {
+    public static MainModel getInstance(AppCompatActivity lview) {
         if(instance == null) {
-            instance = new MainModel(context);
+            instance = new MainModel(lview);
+        } else {
+            view = lview;
+            context = view.getApplicationContext();
         }
         return instance;
     }
 
     public DAO getDAO() {
-        return new DAO(this.context);
+        return new DAO(this.view);
     }
 
     public Therapist getTherapist() {

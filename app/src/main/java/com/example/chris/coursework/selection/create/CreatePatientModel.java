@@ -1,5 +1,9 @@
 package com.example.chris.coursework.selection.create;
 
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.data.DAO;
 import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
@@ -21,7 +25,7 @@ public class CreatePatientModel {
 
     public CreatePatientModel(CreatePatientPresenter presenter) {
         this.presenter = presenter;
-        this.dao = new DAO(presenter.getView().getApplicationContext());
+        this.dao = MainModel.getInstance(presenter.getView()).getDAO();
     }
 
     /**

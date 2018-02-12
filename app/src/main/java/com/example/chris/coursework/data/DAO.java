@@ -1,13 +1,20 @@
 package com.example.chris.coursework.data;
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.ReceiverCallNotAllowedException;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
+import com.example.chris.coursework.R;
 import com.example.chris.coursework.common.Utils;
 import com.example.chris.coursework.data.entities.Attending;
 import com.example.chris.coursework.data.entities.Patient;
@@ -28,9 +35,11 @@ public class DAO {
 
     private DatabaseSchema schema;
     private Context context;
+    private AppCompatActivity currentView;
 
-    public DAO(Context context) {
-        this.context = context;
+    public DAO(AppCompatActivity view) {
+        this.currentView = view;
+        this.context = view.getApplicationContext();
         this.schema = new DatabaseSchema(context);
     }
 
@@ -234,22 +243,33 @@ public class DAO {
     }
 
     public Session updateSession(Session session) {
-        SQLiteDatabase db = getWriteDatabase();
+        // Create pop up
+        try {
 
-        ContentValues cv = setSessionContentValues(session);
-        cv.put("sessionId", session.getSessionId());
+            SQLiteDatabase db = getWriteDatabase();
 
-        String whereClause = "sessionId = ?";
-        String[] whereArg = new String[] {String.valueOf(session.getSessionId())};
+            ContentValues cv = setSessionContentValues(session);
+            cv.put("sessionId", session.getSessionId());
 
-        long id = db.update(
-                DatabaseSchema.SESSION,
-                cv,
-                whereClause,
-                whereArg
-        );
+            String whereClause = "sessionId = ?";
+            String[] whereArg = new String[] {String.valueOf(session.getSessionId())};
 
-        session.setSessionId((int) id);
+            long id = db.update(
+                    DatabaseSchema.SESSION,
+                    cv,
+                    whereClause,
+                    whereArg
+            );
+
+            session.setSessionId((int) id);
+        } catch(SQLiteException sqlEx) {
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this.currentView);
+            alertBuilder.setTitle("Error updating sql database!");
+            String sessionValues = session.toString();
+            alertBuilder.setMessage(sessionValues);
+            alertBuilder.setNeutralButton("Okay", null);
+            alertBuilder.create().show();
+        }
         return session;
     }
 

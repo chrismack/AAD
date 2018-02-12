@@ -45,6 +45,8 @@ public interface ExistingPatientContract {
         void setSelectedPatient(Patient patient);
 
         void gotoTestSelection(Session session);
+
+        ExistingPatientView getView();
     }
 
     interface IExistingPatientView {

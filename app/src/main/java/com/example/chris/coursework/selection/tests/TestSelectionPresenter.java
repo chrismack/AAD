@@ -9,6 +9,7 @@ import com.example.chris.coursework.selection.tests.games.dm.DotMatrixView;
 import com.example.chris.coursework.selection.tests.games.rsr.RoadSignRecognition;
 import com.example.chris.coursework.selection.tests.games.tmt.TrailMakingView;
 import com.example.chris.coursework.selection.tests.games.truckCarMatrix.truckCarMatrix;
+import com.example.chris.coursework.selection.tests.review.ReviewView;
 
 /**
  * Created by Chris on 05/02/2018.
@@ -61,5 +62,11 @@ public class TestSelectionPresenter implements TestSelectionContract.ITestSelect
             this.view.startActivity(intent);
         }
 
+    }
+
+    @Override
+    public void showReview() {
+        Intent intent = new Intent(this.view.getApplicationContext(), ReviewView.class);
+        this.view.startActivity(intent);
     }
 }

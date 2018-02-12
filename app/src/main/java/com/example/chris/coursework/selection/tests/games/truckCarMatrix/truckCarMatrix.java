@@ -21,6 +21,8 @@ import java.util.Collections;
 
 public class truckCarMatrix extends AppCompatActivity {
 
+    private truckCarMatrix currentView;
+
     Integer carImages1[] = {R.drawable.example, R.drawable.car1,R.drawable.car2,R.drawable.car3,R.drawable.car4,R.drawable.car5,R.drawable.car6,R.drawable.car6,R.drawable.car7,R.drawable.car8,R.drawable.car9,R.drawable.car10,R.drawable.car12,R.drawable.car13,R.drawable.car14,R.drawable.car15};
 
 
@@ -41,6 +43,7 @@ public class truckCarMatrix extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        currentView = this;
         Collections.addAll(carImages,carImages1);
         setContentView(R.layout.activity_truck_car_matrix);
 
@@ -191,7 +194,7 @@ public class truckCarMatrix extends AppCompatActivity {
                 {
                     finalScore = scoreCars();
                     timer.cancel();
-                    MainModel mainModel = MainModel.getInstance(getApplicationContext());
+                    MainModel mainModel = MainModel.getInstance(currentView);
                     Session session = mainModel.getCurrentSession();
                     session.setSmc_timeTaken(timeTakenSeconds);
                     session.setSmc_blueCars(finalScore);

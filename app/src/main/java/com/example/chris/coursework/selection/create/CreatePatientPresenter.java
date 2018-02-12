@@ -116,7 +116,8 @@ public class CreatePatientPresenter implements CreatePatientContract.ICreatePati
     public void confirmPatient(Patient patient) {
         this.model.setPatient(patient);
         this.model.insertPatient(patient);
-        MainModel.getInstance(this.view.getApplicationContext()).setCurrentPatient(patient);
+        MainModel mainModel = MainModel.getInstance(this.view);
+        mainModel.setCurrentPatient(patient);
 
         Session session = new Session();
         Calendar cal = Calendar.getInstance();
@@ -127,12 +128,12 @@ public class CreatePatientPresenter implements CreatePatientContract.ICreatePati
         session = this.model.saveSession(session);
 
         Attending attending = this.createAttendance(session);
-        MainModel.getInstance(this.view.getApplicationContext()).setAttending(attending);
+        mainModel.setAttending(attending);
         this.model.createAttending(attending);
 
-        MainModel.getInstance(this.view.getApplicationContext()).setSession(session);
-        MainModel.getInstance(this.view.getApplicationContext()).setCurrentPatient(patient);
-        MainModel.getInstance(this.view.getApplicationContext()).setAttending(attending);
+        mainModel.setSession(session);
+        mainModel.setCurrentPatient(patient);
+        mainModel.setAttending(attending);
 
         Intent intent = new Intent(this.view, TestSelectionView.class);
         this.view.startActivity(intent);
@@ -140,7 +141,7 @@ public class CreatePatientPresenter implements CreatePatientContract.ICreatePati
 
     @Override
     public Attending createAttendance(Session session) {
-        MainModel mainModel = MainModel.getInstance(this.view.getApplicationContext());
+        MainModel mainModel = MainModel.getInstance(this.view);
 
         Attending attending = new Attending();
         attending.setTherapist(mainModel.getTherapist());

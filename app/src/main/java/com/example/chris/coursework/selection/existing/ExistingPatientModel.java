@@ -28,7 +28,7 @@ public class ExistingPatientModel {
 
     public ExistingPatientModel(ExistingPatientPresenter presenter) {
         this.presenter = presenter;
-        this.dao = MainModel.getInstance(this.presenter.getContext()).getDAO();
+        this.dao = MainModel.getInstance(this.presenter.getView()).getDAO();
         this.currentRow = null;
     }
 

@@ -46,6 +46,8 @@ import java.util.Collections;
  */
 public class Compass extends AppCompatActivity {
 
+    private Compass currentView;
+
     Integer carImages1[] = {R.drawable.car_east_northeast, R.drawable.car_east_northwest, R.drawable.car_east_southeast,
             R.drawable.car_north_northeast, R.drawable.car_north_northwest, R.drawable.car_north_southeast, R.drawable.car_north_southwest, R.drawable.car_north_west,
             R.drawable.car_northeast_northwest, R.drawable.car_northeast_southeast, R.drawable.car_northeast_southwest, R.drawable.car_northwest_southeast, R.drawable.car_northwest_southwest,
@@ -75,6 +77,7 @@ public class Compass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Collections.addAll(carImages,carImages1);
         setContentView(R.layout.activity_compass);
+        currentView = this;
 
         timer = new CountDownTimer(300000, 1000) {
 
@@ -233,7 +236,7 @@ public class Compass extends AppCompatActivity {
                 {
                     finalScore = scoreCars();
                     timer.cancel();
-                    MainModel mainModel = MainModel.getInstance(getApplicationContext());
+                    MainModel mainModel = MainModel.getInstance(currentView);
                     Session session = mainModel.getCurrentSession();
                     session.setSmc_timeTaken(timeTakenSeconds);
                     session.setSmc_blueCars(finalScore);

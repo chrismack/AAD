@@ -17,7 +17,6 @@ import com.example.chris.coursework.data.entities.Patient;
 import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.TestSelectionView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -217,7 +216,7 @@ public class ExistingPatientPresenter implements ExistingPatientContract.IExstin
         session = this.model.saveSession(session);
 
         Attending attending = this.createAttendance(session);
-        MainModel.getInstance(getContext()).setAttending(attending);
+        MainModel.getInstance(this.getView()).setAttending(attending);
         this.model.createAttending(attending);
 
         this.gotoTestSelection(session);
@@ -238,23 +237,28 @@ public class ExistingPatientPresenter implements ExistingPatientContract.IExstin
         if(!this.model.attendingExists(attending)) {
             attending = this.model.createAttending(attending);
         }
-        MainModel.getInstance(getContext()).setAttending(attending);
+        MainModel.getInstance(this.getView()).setAttending(attending);
 
-        this.gotoTestSelection(session);
+        //this.gotoTestSelection(session);
     }
 
     @Override
     public void gotoTestSelection(Session session) {
-        MainModel.getInstance(getContext()).setSession(session);
-        MainModel.getInstance(getContext()).setCurrentPatient(selectedPatient);
+        MainModel.getInstance(this.getView()).setSession(session);
+        MainModel.getInstance(this.getView()).setCurrentPatient(selectedPatient);
 
         Intent intent = new Intent(this.view, TestSelectionView.class);
         this.view.startActivity(intent);
     }
 
     @Override
+    public ExistingPatientView getView() {
+        return this.view;
+    }
+
+    @Override
     public Attending createAttendance(Session session) {
-        MainModel mainModel = MainModel.getInstance(getContext());
+        MainModel mainModel = MainModel.getInstance(this.getView());
 
         Attending attending = new Attending();
         attending.setTherapist(mainModel.getTherapist());

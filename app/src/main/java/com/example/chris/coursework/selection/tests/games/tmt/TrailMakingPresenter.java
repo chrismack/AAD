@@ -108,15 +108,4 @@ public class TrailMakingPresenter implements TrailMakingContract.ITrailMakingPre
         this.getView().getFinishButton().setEnabled(true);
     }
 
-    @Override
-    public void finishTest() {
-        Session session = MainModel.getInstance(getContext()).getCurrentSession();
-        session.setTmt_timeTakenA(this.model.getTestATimer().getTimeElapsedSeconds());
-        session.setTmt_timeTakenB(this.model.getTestBTimer().getTimeElapsedSeconds());
-
-        MainModel.getInstance(getContext()).updateSession(session);
-
-        Intent intent = new Intent(this.view, TestSelectionView.class);
-        this.view.startActivity(intent);
-    }
 }

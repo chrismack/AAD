@@ -41,7 +41,7 @@ public class LoginPresenter implements LoginContract.ILoginPresenter{
         if(!username.equals("") && !(password).equals("")) {
             Therapist therapist;
             if((therapist = this.model.verifyPassword(username, password)) != null) {
-                MainModel.getInstance(this.view.getApplicationContext()).setTherapist(therapist);
+                MainModel.getInstance(this.view).setTherapist(therapist);
                 showSetup();
             } else {
                 setLoginError("Incorrect login details");

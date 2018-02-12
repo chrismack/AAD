@@ -32,10 +32,11 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.create.CreatePatientView"
+            android:noHistory="true"
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.TestSelectionView"
-            android:noHistory="true"
+            android:noHistory="false"
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.existing.ExistingPatientView"
@@ -57,7 +58,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.games.truckCarMatrix.truckCarMatrix"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".selection.tests.review.ReviewView"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

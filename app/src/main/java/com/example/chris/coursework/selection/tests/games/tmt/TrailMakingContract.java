@@ -18,7 +18,6 @@ public interface TrailMakingContract {
         void nextState();
         void disableFinish();
         void enableFinish();
-        void finishTest();
     }
 
     interface ITrailMakingView {

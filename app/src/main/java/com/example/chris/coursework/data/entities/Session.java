@@ -166,4 +166,24 @@ public class Session {
     public int getSessionId() {
         return sessionId;
     }
+
+    @Override
+    public String toString() {
+        return "Session Id: " + sessionId + "" + "\n" +
+                "Dot Cancellation Time; " + dm_timeTaken + "" + "\n" +
+                "Dot Cancellation False Positive: " + dm_falsePos + "" + "\n" +
+                "Dot Cancellation Errors: " + dm_trueNeg + "" + "\n" +
+                "Square Matrices Direction Time Taken: " + smd_timeTaken + "" + "\n" +
+                "Square Matrices Direction Cars: " + smd_correctCars + "" + "\n" +
+                "Square Matrices Direction Lorries: " + smd_correctLorries + "" + "\n" +
+                "Square Matrices Compass Time Taken: " + smc_timeTaken + "" + "\n" +
+                "Square Matrices Compass RedCars: " + smc_redCars + "" + "\n" +
+                "Square Matrices Compass BlueCars: " + smc_blueCars + "" + "\n" +
+                "Road Sign Recognition Time Taken: " + rsr_timeTaken + "" + "\n" +
+                "Road Sign Recognition Score: " + rsr_correctSigns + "" + "\n" +
+                "Trail Making Test A Time Taken" + tmt_timeTakenA + "" + "\n" +
+                "Trail Making Test B Time Taken" + tmt_timeTakenB + "" + "\n" +
+                "Session Created: " + creationDate.toString() + "" + "\n" +
+                "Last Attempt: " + lastAttemptDate.toString() + "" + "\n";
+    }
 }

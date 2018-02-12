@@ -167,6 +167,7 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
         float y = event.getY();
         if(x > 0 && y > 0) {
             if(isReview) {
+                // Toggle group selected for therapist review
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     this.model.updateAnswerSet(activeSection, x, y);
                     if(getActiveSection() == 1) {
@@ -201,5 +202,10 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
         this.model.getSection2Draw().disbale();
 
         showSection1();
+    }
+
+    @Override
+    public DotMatrixView getView() {
+        return this.view;
     }
 }

@@ -57,4 +57,9 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
     public void onTestConfirmed(View view) {
         this.presenter.testConfirmed();
     }
+
+    @Override
+    public void onReview(View view) {
+        this.presenter.showReview();
+    }
 }

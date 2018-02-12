@@ -1,12 +1,15 @@
 package com.example.chris.coursework.selection.tests.games.tmt;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.common.Pair;
 import com.example.chris.coursework.common.Timer;
 import com.example.chris.coursework.common.Utils;
 import com.example.chris.coursework.common.views.DrawingView;
+import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.games.IState;
 import com.example.chris.coursework.selection.tests.games.IStateManager;
 import com.example.chris.coursework.selection.tests.games.TestBase;
@@ -94,6 +97,15 @@ public class TrailMakingModel extends TestBase {
         if(getState() == StateManager.State.PracticeB) {
             super.runTest();
         }
+    }
+
+    @Override
+    public void finishTest(Context packageContext) {
+        Session session = MainModel.getInstance(this.presenter.getView()).getCurrentSession();
+        session.setTmt_timeTakenA(this.getTestATimer().getTimeElapsedSeconds());
+        session.setTmt_timeTakenB(this.getTestBTimer().getTimeElapsedSeconds());
+        MainModel.getInstance(this.presenter.getView()).updateSession(session);
+        super.finishTest(packageContext);
     }
 
     public Timer getTestATimer() {
