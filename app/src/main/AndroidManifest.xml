@@ -49,8 +49,10 @@
         <activity
             android:name=".selection.tests.games.dm.DotMatrixView"
             android:screenOrientation="landscape" />
-        <activity android:name=".selection.tests.games.compass.Compass" />
-        <activity android:name=".selection.tests.games.rsr.RoadSignRecognition"></activity>
+        <activity android:name=".selection.tests.games.compass.Compass"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".selection.tests.games.rsr.RoadSignRecognition"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
