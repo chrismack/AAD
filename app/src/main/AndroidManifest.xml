@@ -36,26 +36,21 @@
         <activity
             android:name=".selection.tests.TestSelectionView"
             android:noHistory="true"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".selection.existing.ExistingPatientView"
             android:noHistory="true"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.games.tmt.TrailMakingView"
             android:adjustViewBounds="true"
             android:noHistory="true"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".selection.tests.games.dm.DotMatrixView"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".selection.tests.games.dm.DotMatrixView"
+            android:screenOrientation="landscape" />
+        <activity android:name=".selection.tests.games.compass.Compass" />
+        <activity android:name=".selection.tests.games.rsr.RoadSignRecognition"></activity>
     </application>
 
 </manifest>
