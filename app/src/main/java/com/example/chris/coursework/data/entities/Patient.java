@@ -104,17 +104,17 @@ public class Patient {
         this.sessions = sessions;
     }
 
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String otherNames;
-    private Calendar dob;
-    private String address1;
-    private String address2;
-    private String city;
-    private String postcode;
-    private String nhsNumber;
+    private int id = -1;
+    private String firstName = "";
+    private String lastName = "";
+    private String otherNames = "";
+    private Calendar dob = null;
+    private String address1 = "";
+    private String address2 = "";
+    private String city = "";
+    private String postcode = "";
+    private String nhsNumber = "";
 
     // Existing sessions
-    private List<Session> sessions;
+    private List<Session> sessions = null;
 }

@@ -39,8 +39,10 @@ public class DAO {
 
     public DAO(AppCompatActivity view) {
         this.currentView = view;
-        this.context = view.getApplicationContext();
-        this.schema = new DatabaseSchema(context);
+        if(view != null) {
+            this.context = view.getApplicationContext();
+            this.schema = new DatabaseSchema(context);
+        }
     }
 
     public SQLiteDatabase getReadDatabase() {

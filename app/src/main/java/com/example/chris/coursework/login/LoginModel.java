@@ -31,28 +31,32 @@ public class LoginModel {
         Therapist therapist = dao.getTherapist(email);
 
         if(therapist != null) {
-            try {
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                md.update(therapist.getSalt().getBytes());
-                byte[] bytes = md.digest(password.getBytes());
-
-                StringBuilder sb = new StringBuilder();
-                for(int i = 0; i < bytes.length; i++) {
-                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                }
-
-                String storedPassword = sb.toString();
-                System.out.println(sb.toString());
-                if(therapist.getPassword().equals(storedPassword)) {
-                    return therapist;
-                } else {
-                    return null;
-                }
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+            return comparePasswords(therapist, password);
         }
 
+        return null;
+    }
+
+    private Therapist comparePasswords(Therapist therapist, String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(therapist.getSalt().getBytes());
+            byte[] bytes = md.digest(password.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            String storedPassword = sb.toString();
+            if(therapist.getPassword().equals(storedPassword)) {
+                return therapist;
+            } else {
+                return null;
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

@@ -33,6 +33,9 @@ public class CreatePatientModel {
      * @return Error message, empty string if inputs are valid
      */
     public String checkPatientErrors(Patient patient) {
+        if(patient == null) {
+            return "Patient must be entered!";
+        }
         String errors = "";
 
         if(patient.getFirstName().trim().equals("")) {

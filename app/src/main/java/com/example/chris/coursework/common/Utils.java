@@ -40,7 +40,8 @@ public class Utils {
             Date date = sdf.parse(str);
             cal.setTime(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            // Most likely a malformed date format
+            return null;
         }
         return cal;
     }

@@ -28,7 +28,9 @@ public class MainModel {
 
     public MainModel(AppCompatActivity view) {
         this.view = view;
-        this.context = view.getApplicationContext();
+        if(view != null) {
+            this.context = view.getApplicationContext();
+        }
         database = new DAO(view);
     }
 
@@ -37,7 +39,9 @@ public class MainModel {
             instance = new MainModel(lview);
         } else {
             view = lview;
-            context = view.getApplicationContext();
+            if(lview != null) {
+                context = view.getApplicationContext();
+            }
         }
         return instance;
     }
