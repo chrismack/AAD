@@ -1,0 +1,241 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.example.chris.coursework.selection.tests.games.truckCarMatrix.truckCarMatrix">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                android:layout_column="1"
+                android:background="@android:color/black"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/top0" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/top1" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/top2" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/top3" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/gridRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/left0" />
+
+            <ImageView
+                android:id="@+id/option1"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option2"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option3"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option4"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/left1" />
+
+            <ImageView
+                android:id="@+id/option5"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option6"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option7"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option8"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/left2" />
+
+            <ImageView
+                android:id="@+id/option9"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option10"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option11"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option12"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/left3" />
+
+            <ImageView
+                android:id="@+id/option13"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option14"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option15"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/option16"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/bin"
+                android:layout_width="310px"
+                android:layout_height="310px"
+                app:srcCompat="@drawable/discardbox" />
+
+            <ImageView
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/cardSlot"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+        </TableRow>
+
+        <TableRow>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/placeholder1"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/placeholder2"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/placeholder3"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <ImageView
+                android:id="@+id/placeholder4"
+                android:layout_width="310px"
+                android:layout_height="310px" />
+
+            <Button
+                android:id="@+id/finishButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Finish" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

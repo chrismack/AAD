@@ -8,6 +8,7 @@ import com.example.chris.coursework.selection.tests.games.compass.Compass;
 import com.example.chris.coursework.selection.tests.games.dm.DotMatrixView;
 import com.example.chris.coursework.selection.tests.games.rsr.RoadSignRecognition;
 import com.example.chris.coursework.selection.tests.games.tmt.TrailMakingView;
+import com.example.chris.coursework.selection.tests.games.truckCarMatrix.truckCarMatrix;
 
 /**
  * Created by Chris on 05/02/2018.
@@ -42,6 +43,7 @@ public class TestSelectionPresenter implements TestSelectionContract.ITestSelect
                 nextActivity = DotMatrixView.class;
                 break;
             case R.id.rb_smd:
+                nextActivity = truckCarMatrix.class;
                 break;
             case R.id.rb_smc:
                 nextActivity = Compass.class;

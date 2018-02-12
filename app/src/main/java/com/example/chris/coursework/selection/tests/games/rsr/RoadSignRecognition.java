@@ -2,7 +2,9 @@ package com.example.chris.coursework.selection.tests.games.rsr;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.Intent;
 import android.media.Image;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -11,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.R;
+import com.example.chris.coursework.data.entities.Session;
+import com.example.chris.coursework.selection.tests.TestSelectionView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,12 +24,19 @@ import java.util.Random;
 
 public class RoadSignRecognition extends AppCompatActivity {
 
-    Integer roadSigns[] = {R.drawable.sign1, R.drawable.sign2,R.drawable.sign3,R.drawable.sign4,R.drawable.sign5,R.drawable.sign6,R.drawable.sign7,R.drawable.sign8,R.drawable.sign9,R.drawable.sign10,R.drawable.sign11,R.drawable.sign12};
+    Integer roadSigns[] = {R.drawable.sign1, R.drawable.sign2,R.drawable.sign3,R.drawable.sign4,R.drawable.sign5,R.drawable.sign6,R.drawable.sign7,R.drawable.sign8,R.drawable.sign9,R.drawable.sign10,R.drawable.sign11,R.drawable.sign12,R.drawable.rsrexampleanswer};
 
     ArrayList<Integer> roadSignsArrayList = new ArrayList<>();
     LinearLayout roadSignScrollArray;
     ArrayList<ImageView> roadLayouts = new ArrayList<>();
     ArrayList<ImageView> roadOverlay = new ArrayList<>();
+
+    CountDownTimer timer;
+    int timeTakenSeconds = 0;
+    boolean timeOver = false;
+    boolean timerStarted = false;
+    int finalScore =0;
+
     //ImageView roadLayouts1[] = {findViewById(R.id.road1),findViewById(R.id.road2),findViewById(R.id.road3),findViewById(R.id.road4),findViewById(R.id.road5),findViewById(R.id.road6),findViewById(R.id.road7),findViewById(R.id.road8),findViewById(R.id.road9),findViewById(R.id.road10),findViewById(R.id.road11),findViewById(R.id.road12)};
     //ImageView roadOverlay1[] = {findViewById(R.id.road1Overlay),findViewById(R.id.road2Overlay),findViewById(R.id.road3Overlay),findViewById(R.id.road4Overlay),findViewById(R.id.road5Overlay),findViewById(R.id.road6Overlay),findViewById(R.id.road7Overlay),findViewById(R.id.road8Overlay),findViewById(R.id.road9Overlay),findViewById(R.id.road10Overlay),findViewById(R.id.road11Overlay),findViewById(R.id.road12Overlay)};
 
@@ -34,11 +46,27 @@ public class RoadSignRecognition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_road_sign_recognition);
 
-        ImageView roadLayouts1[] = {findViewById(R.id.road1),findViewById(R.id.road2),findViewById(R.id.road3),findViewById(R.id.road4),findViewById(R.id.road5),findViewById(R.id.road6),findViewById(R.id.road7),findViewById(R.id.road8),findViewById(R.id.road9),findViewById(R.id.road10),findViewById(R.id.road11),findViewById(R.id.road12)};
-        ImageView roadOverlay1[] = {findViewById(R.id.road1Overlay),findViewById(R.id.road2Overlay),findViewById(R.id.road3Overlay),findViewById(R.id.road4Overlay),findViewById(R.id.road5Overlay),findViewById(R.id.road6Overlay),findViewById(R.id.road7Overlay),findViewById(R.id.road8Overlay),findViewById(R.id.road9Overlay),findViewById(R.id.road10Overlay),findViewById(R.id.road11Overlay),findViewById(R.id.road12Overlay)};
+
+        timer = new CountDownTimer(300000, 1000) {
+
+            @Override
+            public void onTick(long l) {
+                timeTakenSeconds++;
+            }
+
+            @Override
+            public void onFinish() {
+                timeOver = true;
+                finalScore = getScore();
+            }
+        };
+
+        ImageView roadLayouts1[] = {findViewById(R.id.road1),findViewById(R.id.road2),findViewById(R.id.road3),findViewById(R.id.road4),findViewById(R.id.road5),findViewById(R.id.road6),findViewById(R.id.road7),findViewById(R.id.road8),findViewById(R.id.road9),findViewById(R.id.road10),findViewById(R.id.road11),findViewById(R.id.road12),findViewById(R.id.example)};
+        ImageView roadOverlay1[] = {findViewById(R.id.road1Overlay),findViewById(R.id.road2Overlay),findViewById(R.id.road3Overlay),findViewById(R.id.road4Overlay),findViewById(R.id.road5Overlay),findViewById(R.id.road6Overlay),findViewById(R.id.road7Overlay),findViewById(R.id.road8Overlay),findViewById(R.id.road9Overlay),findViewById(R.id.road10Overlay),findViewById(R.id.road11Overlay),findViewById(R.id.road12Overlay),findViewById(R.id.exampleOverlay)};
         Collections.addAll(roadLayouts,roadLayouts1);
         Collections.addAll(roadOverlay,roadOverlay1);
 
+        findViewById(R.id.FinishButton).setOnClickListener(new onLongClick());
 
         //roadOverlay[0].setOnDragListener(new dragListener());
         Collections.addAll(roadSignsArrayList, roadSigns);
@@ -56,7 +84,7 @@ public class RoadSignRecognition extends AppCompatActivity {
 
     private int getScore(){
         int tempScore = 0;
-        for (int i = 0; i < roadOverlay.size(); i++)
+        for (int i = 0; i < roadOverlay.size()-1; i++)
         {
             if (roadSigns[i] == roadOverlay.get(i).getTag())
             {
@@ -66,7 +94,8 @@ public class RoadSignRecognition extends AppCompatActivity {
         return tempScore;
     }
 
-    private final class onLongClick implements View.OnLongClickListener{
+
+    private final class onLongClick implements View.OnLongClickListener, View.OnClickListener{
 
 
         @Override
@@ -75,7 +104,36 @@ public class RoadSignRecognition extends AppCompatActivity {
             ClipData data = ClipData.newPlainText("", "");
             String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
             view.startDragAndDrop(data, shadowBuilder, view, 0);
+
+            System.out.println(view.getTag());
+            System.out.println(roadSigns[12]);
+            if ((!timerStarted) && (view.getTag() != roadSigns[12]))
+            {
+                timer.start();
+                System.out.println("Timer Started");
+                timerStarted = true;
+            }
             return false;
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (view == findViewById(R.id.FinishButton))
+            {
+                //record scores
+                if (!timeOver)
+                {
+                    finalScore = getScore();
+                    timer.cancel();
+                    MainModel mainModel = MainModel.getInstance(getApplicationContext());
+                    Session session = mainModel.getCurrentSession();
+                    session.setRsr_correctSigns(finalScore);
+                    session.setRsr_timeTaken(timeTakenSeconds);
+                    mainModel.updateSession(session);
+                }
+                Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
+                startActivity(intent);
+            }
         }
     }
     private final class dragListener implements View.OnDragListener
