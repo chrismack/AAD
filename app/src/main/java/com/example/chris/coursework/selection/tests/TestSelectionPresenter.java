@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.chris.coursework.R;
+import com.example.chris.coursework.selection.tests.games.compass.Compass;
 import com.example.chris.coursework.selection.tests.games.dm.DotMatrixView;
+import com.example.chris.coursework.selection.tests.games.rsr.RoadSignRecognition;
 import com.example.chris.coursework.selection.tests.games.tmt.TrailMakingView;
 
 /**
@@ -42,8 +44,10 @@ public class TestSelectionPresenter implements TestSelectionContract.ITestSelect
             case R.id.rb_smd:
                 break;
             case R.id.rb_smc:
+                nextActivity = Compass.class;
                 break;
             case R.id.rb_rsr:
+                nextActivity = RoadSignRecognition.class;
                 break;
             case R.id.rb_tmt:
                 nextActivity = TrailMakingView.class;

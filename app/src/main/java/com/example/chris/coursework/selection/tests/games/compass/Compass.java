@@ -1,8 +1,11 @@
 package com.example.chris.coursework.selection.tests.games.compass;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -10,6 +13,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.ActionBar;
@@ -27,7 +31,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.R;
+import com.example.chris.coursework.data.entities.Session;
+import com.example.chris.coursework.selection.tests.TestSelectionView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -56,7 +63,10 @@ public class Compass extends AppCompatActivity {
     ArrayList<boardCoordinates> coordinatesArray = new ArrayList<>();
     ArrayList<roundaboutTags> rtArray = new ArrayList<>();
     boolean boardGenerated = false;
-    //timer.start();
+    CountDownTimer timer;
+    int timeTakenSeconds = 0;
+    boolean timeOver = false;
+    int finalScore =0;
     //timesUp = false;
 
 
@@ -64,6 +74,20 @@ public class Compass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Collections.addAll(carImages,carImages1);
         setContentView(R.layout.activity_compass);
+
+        timer = new CountDownTimer(300000, 1000) {
+
+            @Override
+            public void onTick(long l) {
+                timeTakenSeconds++;
+            }
+
+            @Override
+            public void onFinish() {
+                timeOver = true;
+                finalScore = scoreCars();
+            }
+        };
 
         addDirectionsToDrawables();
         ImageView cardSlotImage = (ImageView) findViewById(R.id.cardSlot);
@@ -199,32 +223,26 @@ public class Compass extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                     ClipData data = ClipData.newPlainText("", "");
-                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
                     view.startDragAndDrop(data, shadowBuilder, view, 0);
-/*                System.out.println("Touched view ID:");
-                System.out.println(view.getTag());
-                System.out.println("Option 1 ID:");
-                System.out.println(R.id.option1);
-                System.out.println(view.getLeft());
-                System.out.println(findViewById(R.id.option1).getLeft());
-                if (view.getParent() == findViewById(R.id.option1)){
-                    System.out.println("You have clicked on option1");
-                }*/
                     return true;
                 }
             }
             if (view == findViewById(R.id.finishButton))
             {
-                /*
-                if (timesUp)
+
+                if (!timeOver)
                 {
-                    display confirmation popup?
-                    pass time and finalScore into scoresheet.
+                    finalScore = scoreCars();
+                    timer.cancel();
+                    MainModel mainModel = MainModel.getInstance(getApplicationContext());
+                    Session session = mainModel.getCurrentSession();
+                    session.setSmc_timeTaken(timeTakenSeconds);
+                    session.setSmc_blueCars(finalScore);
+                    mainModel.updateSession(session);
                 }
-                 */
-                int finishScore = 0;
-                finishScore = scoreCars();
-                System.out.println("The current score is: "+ finishScore); //Replace with score sent to scoresheet.
+                Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
+                startActivity(intent);
+                //System.out.println("The current score is: "+ ); //Replace with score sent to scoresheet.
             }
             if (view == findViewById(R.id.bin))
             {
