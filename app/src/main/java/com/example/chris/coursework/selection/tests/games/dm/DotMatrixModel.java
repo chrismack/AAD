@@ -69,7 +69,7 @@ public class DotMatrixModel extends TestBase {
             {5, 3, 3, 5, 4, 5, 5, 3, 3, 5, 5, 5, 3, 3, 5, 5, 5, 3, 4, 3, 3, 4, 5, 3, 3}
     };
 
-    final int[][]  section2Answers = {
+    final int[][] section2Answers = {
             {3, 5, 5, 5, 5, 3, 5, 3, 5, 3, 3, 5, 3, 4, 5, 5, 5, 4, 5, 3, 3, 3, 5, 3, 4},
             {5, 3, 5, 3, 5, 5, 4, 3, 3, 3, 3, 5, 3, 3, 4, 5, 5, 4, 3, 5, 4, 3, 3, 5, 3},
             {5, 4, 5, 5, 4, 3, 5, 5, 5, 3, 5, 5, 4, 5, 3, 5, 3, 5, 5, 5, 5, 5, 5, 5, 3},
@@ -85,8 +85,11 @@ public class DotMatrixModel extends TestBase {
     private List<List<Boolean>> section1Touched = new ArrayList<>();
     private List<List<Boolean>> section2Touched = new ArrayList<>();
 
+    private List<List<Boolean>> section1TouchedAfterTime = new ArrayList<>();
+    private List<List<Boolean>> section2TouchedAfterTime = new ArrayList<>();
+
     private CountDownTimer timer;
-    private final long testTimemills = (5 * 1000) * 60;
+    private final long testTimemills = (15 * 1000) * 60;
     private boolean timeOver = false;
     private boolean timerRan = false;
     private int timeTakenSeconds = 0;
@@ -126,7 +129,7 @@ public class DotMatrixModel extends TestBase {
             @Override
             public void onFinish() {
                 timeOver = true;
-                if(getState() == StateManager.State.TimeOver) {
+                if (getState() == StateManager.State.TimeOver) {
                     runTest();
                 }
             }
@@ -138,17 +141,21 @@ public class DotMatrixModel extends TestBase {
      * Set to true when a square is touched
      */
     private void setupAnswersTouched() {
-        for(int x  = 0; x < this.section1XDots; x++) {
+        for (int x = 0; x < this.section1XDots; x++) {
             section1Touched.add(new ArrayList<Boolean>());
-            for(int y = 0; y < this.section1YDots; y++) {
+            section1TouchedAfterTime.add(new ArrayList<Boolean>());
+            for (int y = 0; y < this.section1YDots; y++) {
                 section1Touched.get(x).add(false);
+                section1TouchedAfterTime.get(x).add(false);
             }
         }
 
-        for(int x  = 0; x < this.section2XDots; x++) {
+        for (int x = 0; x < this.section2XDots; x++) {
             section2Touched.add(new ArrayList<Boolean>());
-            for(int y = 0; y < this.section2YDots; y++) {
+            section2TouchedAfterTime.add(new ArrayList<Boolean>());
+            for (int y = 0; y < this.section2YDots; y++) {
                 section2Touched.get(x).add(false);
+                section2TouchedAfterTime.get(x).add(false);
             }
         }
     }
@@ -183,9 +190,9 @@ public class DotMatrixModel extends TestBase {
         Pair<Integer, Integer> errors = new Pair<>(0, 0);
 
         // Section 1
-        for(int x = 0; x < section1Touched.size() ; x++) {
-            for(int y = 0; y < section1Touched.get(x).size(); y++) {
-                if(section1Touched.get(x).get(y) && (section1Answers[y][x] == 5 || section1Answers[y][x] == 3)) {
+        for (int x = 0; x < section1Touched.size(); x++) {
+            for (int y = 0; y < section1Touched.get(x).size(); y++) {
+                if (section1Touched.get(x).get(y) && (section1Answers[y][x] == 5 || section1Answers[y][x] == 3)) {
                     errors.setFirst(errors.getFirst() + 1);
                 } else if (!section1Touched.get(x).get(y) && section1Answers[y][x] == 4) {
                     errors.setLast(errors.getLast() + 1);
@@ -194,9 +201,9 @@ public class DotMatrixModel extends TestBase {
         }
 
         // Section 2
-        for(int x = 0; x < section2Touched.size(); x++) {
-            for(int y = 0; y < section2Touched.get(x).size(); y++) {
-                if(section2Touched.get(x).get(y) && (section2Answers[y][x] == 5 || section2Answers[y][x] == 3)) {
+        for (int x = 0; x < section2Touched.size(); x++) {
+            for (int y = 0; y < section2Touched.get(x).size(); y++) {
+                if (section2Touched.get(x).get(y) && (section2Answers[y][x] == 5 || section2Answers[y][x] == 3)) {
                     errors.setFirst(errors.getFirst() + 1);
                 } else if (!section2Touched.get(x).get(y) && section2Answers[y][x] == 4) {
                     errors.setLast(errors.getLast() + 1);
@@ -248,26 +255,38 @@ public class DotMatrixModel extends TestBase {
     }
 
     public void updateAnswerSet(int activeSection, float x, float y) {
-        boolean isReview = getState() == StateManager.State.Reviewing ? true : false;
+        boolean isReview = getState() == StateManager.State.Reviewing;
 
-        if(!timeOver  || isReview) {
-            int groupX, groupY;
-            if(activeSection == 1) {
-                groupX = (int)(x / sec1GroupWidth);
-                groupY = (int)(y / sec1GroupHeight);
-                if(groupX < section1Touched.size() && groupY < section1Touched.get(groupX).size()) {
-                    if(isReview) {
-                        this.section1Touched.get(groupX).set(groupY, !this.section1Touched.get(groupX).get(groupY));
+        int groupX, groupY;
+        if (activeSection == 1) {
+            groupX = (int) (x / sec1GroupWidth);
+            groupY = (int) (y / sec1GroupHeight);
+            if (groupX < section1Touched.size() && groupY < section1Touched.get(groupX).size()) {
+                if (isReview) {
+                    this.section1Touched.get(groupX).set(groupY, !this.section1Touched.get(groupX).get(groupY));
+                    if(this.section1TouchedAfterTime.get(groupX).get(groupY)) {
+                        this.section1TouchedAfterTime.get(groupX).set(groupY, false);
+                    }
+                } else {
+                    if (timeOver) {
+                        this.section1TouchedAfterTime.get(groupX).set(groupY, true);
                     } else {
                         this.section1Touched.get(groupX).set(groupY, true);
                     }
                 }
-            } else {
-                groupX = (int)(x / sec2GroupWidth);
-                groupY = (int)(y / sec2GroupHeight);
-                if(groupX < section2Touched.size() && groupY < section2Touched.get(groupX).size()) {
-                    if(isReview) {
-                        this.section2Touched.get(groupX).set(groupY, !this.section2Touched.get(groupX).get(groupY));
+            }
+        } else {
+            groupX = (int) (x / sec2GroupWidth);
+            groupY = (int) (y / sec2GroupHeight);
+            if (groupX < section2Touched.size() && groupY < section2Touched.get(groupX).size()) {
+                if (isReview) {
+                    this.section2Touched.get(groupX).set(groupY, !this.section2Touched.get(groupX).get(groupY));
+                    if(this.section2TouchedAfterTime.get(groupX).get(groupY)) {
+                        this.section2TouchedAfterTime.get(groupX).set(groupY, false);
+                    }
+                } else {
+                    if (timeOver) {
+                        this.section2TouchedAfterTime.get(groupX).set(groupY, true);
                     } else {
                         this.section2Touched.get(groupX).set(groupY, true);
                     }
@@ -282,6 +301,14 @@ public class DotMatrixModel extends TestBase {
 
     public List<List<Boolean>> getSection2Touched() {
         return section2Touched;
+    }
+
+    public List<List<Boolean>> getSection1TouchedAfterTime() {
+        return section1TouchedAfterTime;
+    }
+
+    public List<List<Boolean>> getSection2TouchedAfterTime() {
+        return section2TouchedAfterTime;
     }
 
     public float getSec1GroupWidth() {

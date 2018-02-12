@@ -90,10 +90,17 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
 
 
             List<List<Boolean>> section1Touched = this.model.getSection1Touched();
+            List<List<Boolean>> section1TouchedAfterTime = this.model.getSection1TouchedAfterTime();
+
             Paint paintSettings = new Paint();
             paintSettings.setStyle(Paint.Style.STROKE);
             paintSettings.setColor(Color.BLACK);
             paintSettings.setStrokeWidth(3);
+
+            Paint paintAfterTime = new Paint();
+            paintAfterTime.setStyle(Paint.Style.STROKE);
+            paintAfterTime.setColor(Color.RED);
+            paintAfterTime.setStrokeWidth(3);
 
             for(int x = 0; x < section1Touched.size(); x++) {
                 for(int y = 0; y < section1Touched.get(x).size(); y++) {
@@ -106,6 +113,16 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
                                 y * this.model.getSec1GroupHeight() + this.model.getSec1GroupHeight(),
                                 paintSettings
                                 ));
+                        //Display red square around group touched after timer
+                    } else if(section1TouchedAfterTime.get(x).get(y) == true) {
+                        this.view.getSection1Draw().addView(new Rectangle(
+                                getContext(),
+                                x * this.model.getSec1GroupWidth(),
+                                y * this.model.getSec1GroupHeight(),
+                                x * this.model.getSec1GroupWidth() + this.model.getSec1GroupWidth(),
+                                y * this.model.getSec1GroupHeight() + this.model.getSec1GroupHeight(),
+                                paintAfterTime
+                        ));
                     }
                 }
             }
@@ -129,10 +146,16 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
             this.view.getSection2Draw().addView(this.model.getSection2Draw());
 
             List<List<Boolean>> section2Touched = this.model.getSection2Touched();
+            List<List<Boolean>> section2TouchedAfterTouch = this.model.getSection2TouchedAfterTime();
             Paint paintSettings = new Paint();
             paintSettings.setStyle(Paint.Style.STROKE);
             paintSettings.setColor(Color.BLACK);
             paintSettings.setStrokeWidth(3);
+
+            Paint paintAfterTouch = new Paint();
+            paintAfterTouch.setStyle(Paint.Style.STROKE);
+            paintAfterTouch.setColor(Color.RED);
+            paintAfterTouch.setStrokeWidth(3);
 
             for(int x = 0; x < section2Touched.size(); x++) {
                 for(int y = 0; y < section2Touched.get(x).size(); y++) {
@@ -144,6 +167,16 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
                                 x * this.model.getSec2GroupWidth() + this.model.getSec2GroupWidth(),
                                 y * this.model.getSec2GroupHeight() + this.model.getSec2GroupHeight(),
                                 paintSettings
+                        ));
+                        // Display red squares around groups touched after timer
+                    } else if(section2TouchedAfterTouch.get(x).get(y) == true) {
+                        this.view.getSection2Draw().addView(new Rectangle(
+                                getContext(),
+                                x * this.model.getSec2GroupWidth(),
+                                y * this.model.getSec2GroupHeight(),
+                                x * this.model.getSec2GroupWidth() + this.model.getSec2GroupWidth(),
+                                y * this.model.getSec2GroupHeight() + this.model.getSec2GroupHeight(),
+                                paintAfterTouch
                         ));
                     }
                 }

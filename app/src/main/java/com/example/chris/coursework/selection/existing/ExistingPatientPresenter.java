@@ -239,7 +239,7 @@ public class ExistingPatientPresenter implements ExistingPatientContract.IExstin
         }
         MainModel.getInstance(this.getView()).setAttending(attending);
 
-        //this.gotoTestSelection(session);
+        this.gotoTestSelection(session);
     }
 
     @Override
