@@ -11,13 +11,16 @@ public class ReviewView extends AppCompatActivity implements ReviewContract.IRev
     // Dot cancellation answers
     private TextView tv_rev_dc_error, tv_rev_dc_fp, tv_rev_dc_tt;
     // Square matrices direction
-    private TextView tv_rev_sqd_ds, tv_rev_smd_cd;
+    private TextView tv_rev_sqd_ds;
     // Road sign recognition
     private TextView tv_rev_rsr_ds;
     // Trail Making Test
-    private TextView tv_rev_tmt_tt;
+    private TextView tv_rev_tmt_tt_a, tv_rev_tmt_tt_b;
     // Square matrices compass
-    private TextView tv_rev_smc_cs, tv_rev_smc_ds;
+    private TextView tv_rev_smc_cs;
+
+    // Final Scores
+    private TextView tv_rev_fs_pass, tv_rev_fs_fail;
 
     private ReviewPresenter presenter;
 
@@ -30,11 +33,12 @@ public class ReviewView extends AppCompatActivity implements ReviewContract.IRev
         tv_rev_dc_fp = (TextView) findViewById(R.id.tv_rev_dc_fp);
         tv_rev_dc_tt = (TextView) findViewById(R.id.tv_rev_dc_tt);
         tv_rev_sqd_ds = (TextView) findViewById(R.id.tv_rev_sqd_ds);
-        tv_rev_smd_cd = (TextView) findViewById(R.id.tv_rev_smd_cd);
         tv_rev_rsr_ds = (TextView) findViewById(R.id.tv_rev_rsr_ds);
-        tv_rev_tmt_tt = (TextView) findViewById(R.id.tv_rev_tmt_tt);
+        tv_rev_tmt_tt_a = (TextView) findViewById(R.id.tv_rev_tmt_tt_a);
+        tv_rev_tmt_tt_b = (TextView) findViewById(R.id.tv_rev_tmt_tt_b);
         tv_rev_smc_cs = (TextView) findViewById(R.id.tv_rev_smc_cs);
-        tv_rev_smc_ds = (TextView) findViewById(R.id.tv_rev_smc_ds);
+        tv_rev_fs_pass = (TextView) findViewById(R.id.tv_rev_fs_pass);
+        tv_rev_fs_fail = (TextView) findViewById(R.id.tv_rev_fs_fail);
 
         presenter = new ReviewPresenter(this);
     }
@@ -80,16 +84,6 @@ public class ReviewView extends AppCompatActivity implements ReviewContract.IRev
     }
 
     @Override
-    public TextView getTv_rev_smd_cd() {
-        return tv_rev_smd_cd;
-    }
-
-    @Override
-    public void setTv_rev_smd_cd(TextView tv_rev_smd_cd) {
-        this.tv_rev_smd_cd = tv_rev_smd_cd;
-    }
-
-    @Override
     public TextView getTv_rev_rsr_ds() {
         return tv_rev_rsr_ds;
     }
@@ -100,13 +94,23 @@ public class ReviewView extends AppCompatActivity implements ReviewContract.IRev
     }
 
     @Override
-    public TextView getTv_rev_tmt_tt() {
-        return tv_rev_tmt_tt;
+    public TextView getTv_rev_tmt_tt_a() {
+        return tv_rev_tmt_tt_a;
     }
 
     @Override
-    public void setTv_rev_tmt_tt(TextView tv_rev_tmt_tt) {
-        this.tv_rev_tmt_tt = tv_rev_tmt_tt;
+    public void setTv_rev_tmt_tt_a(TextView tv_rev_tmt_tt) {
+        this.tv_rev_tmt_tt_a = tv_rev_tmt_tt_a;
+    }
+
+    @Override
+    public TextView getTv_rev_tmt_tt_b() {
+        return tv_rev_tmt_tt_b;
+    }
+
+    @Override
+    public void setTv_rev_tmt_tt_b(TextView tv_rev_tmt_tt) {
+        this.tv_rev_tmt_tt_b = tv_rev_tmt_tt_b;
     }
 
     @Override
@@ -120,12 +124,23 @@ public class ReviewView extends AppCompatActivity implements ReviewContract.IRev
     }
 
     @Override
-    public TextView getTv_rev_smc_ds() {
-        return tv_rev_smc_ds;
+    public TextView getTv_rev_fs_pass() {
+        return this.tv_rev_fs_pass;
     }
 
     @Override
-    public void setTv_rev_smc_ds(TextView tv_rev_smc_ds) {
-        this.tv_rev_smc_ds = tv_rev_smc_ds;
+    public void setTv_rev_fs_pass(TextView tv_rev_fs_pass) {
+        this.tv_rev_fs_pass = tv_rev_fs_pass;
     }
+
+    @Override
+    public TextView getTv_rev_fs_fail() {
+        return this.tv_rev_fs_fail;
+    }
+
+    @Override
+    public void setTv_rev_fs_fail(TextView tv_rev_fs_fail) {
+        this.tv_rev_fs_fail = tv_rev_fs_fail;
+    }
+
 }

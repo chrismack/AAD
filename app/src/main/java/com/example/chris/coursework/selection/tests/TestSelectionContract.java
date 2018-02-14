@@ -16,6 +16,8 @@ public interface TestSelectionContract {
         void testConfirmed();
 
         void showReview();
+
+        void displayCompleted();
     }
 
     interface ITestSelectionView {

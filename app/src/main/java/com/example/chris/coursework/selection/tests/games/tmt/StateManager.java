@@ -23,7 +23,7 @@ public class StateManager implements IStateManager{
         PracticeA {
             @Override
             public State runState() {
-                presenter.buildTestArea(10, false);
+                presenter.buildTestArea(8, false);
                 return ReadyA;
             }
         },
@@ -53,7 +53,7 @@ public class StateManager implements IStateManager{
         PracticeB {
             @Override
             public State runState() {
-                presenter.buildTestArea(10, true);
+                presenter.buildTestArea(8, true);
                 return ReadyB;
             }
         },

@@ -44,7 +44,7 @@ public class DotMatrixModel extends TestBase {
     private final int section1TotalYDots = 11;
     private final int section2TotalYDots = 10;
 
-    private final int sec1Width = 2590;
+    private final int sec1Width = 2564;
     private final int sec1Height = 1114;
     private final int sec2Width = 2564;
     private final int sec2Height = 1040;

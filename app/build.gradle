@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -26,7 +30,6 @@ dependencies {
     testCompile 'org.powermock:powermock-api-mockito:1.6.1'
     testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.1'
     testCompile 'org.powermock:powermock-module-junit4-rule:1.6.1'
-    testCompile 'org.powermock:powermock-module-junit4:1.6.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'

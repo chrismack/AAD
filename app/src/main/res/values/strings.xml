@@ -42,4 +42,6 @@
     <string name="next">Next</string>
     <string name="start">Start</string>
     <string name="reviewPatient">Review Patient Tests</string>
+    <string name="sel_pat">Select Patient</string>
+    <string name="sel_ses">Select Session</string>
 </resources>

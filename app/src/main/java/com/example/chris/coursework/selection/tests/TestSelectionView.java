@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.example.chris.coursework.R;
@@ -14,6 +15,7 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
 
     RadioGroup rg_testSelection;
     Button btn_testConfirm;
+    ImageView tmt_check, dc_check, rsr_check, smd_check, smc_check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,12 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
         rg_testSelection = (RadioGroup) findViewById(R.id.rg_test_selection);
         btn_testConfirm = (Button) findViewById(R.id.btn_test_confirm);
 
+        tmt_check = (ImageView) findViewById(R.id.img_ts_tmt_check);
+        dc_check = (ImageView) findViewById(R.id.img_ts_dc_check);
+        rsr_check = (ImageView) findViewById(R.id.img_ts_rsr_check);
+        smd_check = (ImageView) findViewById(R.id.img_ts_smd_check);
+        smc_check = (ImageView) findViewById(R.id.img_ts_smc_check);
+
         rg_testSelection.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -31,6 +39,7 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
         });
 
         this.presenter = new TestSelectionPresenter(this);
+        this.presenter.displayCompleted();
     }
 
     @Override
@@ -61,5 +70,25 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
     @Override
     public void onReview(View view) {
         this.presenter.showReview();
+    }
+
+    public ImageView getTmt_check() {
+        return tmt_check;
+    }
+
+    public ImageView getDc_check() {
+        return dc_check;
+    }
+
+    public ImageView getRsr_check() {
+        return rsr_check;
+    }
+
+    public ImageView getSmd_check() {
+        return smd_check;
+    }
+
+    public ImageView getSmc_check() {
+        return smc_check;
     }
 }

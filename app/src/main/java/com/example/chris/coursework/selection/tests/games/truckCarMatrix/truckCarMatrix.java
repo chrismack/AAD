@@ -196,8 +196,8 @@ public class truckCarMatrix extends AppCompatActivity {
                     timer.cancel();
                     MainModel mainModel = MainModel.getInstance(currentView);
                     Session session = mainModel.getCurrentSession();
-                    session.setSmc_timeTaken(timeTakenSeconds);
-                    session.setSmc_blueCars(finalScore);
+                    session.setSmd_timeTaken(timeTakenSeconds);
+                    session.setSmd_correctCars(finalScore);
                     mainModel.updateSession(session);
                 }
                 Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);

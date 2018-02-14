@@ -2,6 +2,7 @@ package com.example.chris.coursework.common;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Environment;
 import android.view.View;
 import android.widget.DatePicker;
 
@@ -60,6 +61,23 @@ public class Utils {
     public static List<?> randomiseList(List<?> list) {
         Collections.shuffle(list);
         return list;
+    }
+
+    public static boolean externalStorageWriteable() {
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean externalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state) ||
+            Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
     }
 
 

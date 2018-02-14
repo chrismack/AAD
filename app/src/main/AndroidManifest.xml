@@ -40,7 +40,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.existing.ExistingPatientView"
-            android:noHistory="true"
+            android:noHistory="false"
             android:screenOrientation="landscape" />
         <activity
             android:name=".selection.tests.games.tmt.TrailMakingView"
@@ -49,19 +49,24 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".selection.tests.games.dm.DotMatrixView"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:noHistory="true"/>
         <activity
             android:name=".selection.tests.games.compass.Compass"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity
             android:name=".selection.tests.games.rsr.RoadSignRecognition"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:noHistory="true"/>
         <activity
             android:name=".selection.tests.games.truckCarMatrix.truckCarMatrix"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity
             android:name=".selection.tests.review.ReviewView"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:noHistory="true"/>
     </application>
 
 </manifest>

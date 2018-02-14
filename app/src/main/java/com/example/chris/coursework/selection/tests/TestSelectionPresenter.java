@@ -3,7 +3,9 @@ package com.example.chris.coursework.selection.tests;
 import android.content.Intent;
 import android.view.View;
 
+import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.R;
+import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.games.compass.Compass;
 import com.example.chris.coursework.selection.tests.games.dm.DotMatrixView;
 import com.example.chris.coursework.selection.tests.games.rsr.RoadSignRecognition;
@@ -61,12 +63,32 @@ public class TestSelectionPresenter implements TestSelectionContract.ITestSelect
             Intent intent = new Intent(this.view, nextActivity);
             this.view.startActivity(intent);
         }
-
     }
 
     @Override
     public void showReview() {
         Intent intent = new Intent(this.view.getApplicationContext(), ReviewView.class);
         this.view.startActivity(intent);
+    }
+
+    @Override
+    public void displayCompleted() {
+        Session session = MainModel.getInstance(this.view).getCurrentSession();
+
+        if(session.getTmt_timeTakenA() > 0 || session.getTmt_timeTakenB() > 0) {
+            this.view.getTmt_check().setVisibility(View.VISIBLE);
+        }
+        if(session.getDm_timeTaken() > 0) {
+            this.view.getDc_check().setVisibility(View.VISIBLE);
+        }
+        if(session.getRsr_timeTaken() > 0) {
+            this.view.getRsr_check().setVisibility(View.VISIBLE);
+        }
+        if(session.getSmc_timeTaken() > 0) {
+            this.view.getSmc_check().setVisibility(View.VISIBLE);
+        }
+        if(session  .getSmd_timeTaken() > 0) {
+            this.view.getSmd_check().setVisibility(View.VISIBLE);
+        }
     }
 }

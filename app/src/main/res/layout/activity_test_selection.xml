@@ -20,12 +20,13 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="258dp"
             android:layout_height="167dp"
             android:layout_marginStart="68dp"
@@ -98,6 +99,59 @@
             android:text="@string/reviewPatient"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_ts_dc_check"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="256dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/img_ts_tmt_check"
+            app:srcCompat="@drawable/ic_tick" />
+
+        <ImageView
+            android:id="@+id/img_ts_rsr_check"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="256dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/img_ts_dc_check"
+            app:srcCompat="@drawable/ic_tick" />
+
+        <ImageView
+            android:id="@+id/img_ts_smd_check"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="256dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/img_ts_rsr_check"
+            app:srcCompat="@drawable/ic_tick" />
+
+        <ImageView
+            android:id="@+id/img_ts_smc_check"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="256dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/img_ts_smd_check"
+            app:srcCompat="@drawable/ic_tick" />
+
+        <ImageView
+            android:id="@+id/img_ts_tmt_check"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="324dp"
+            android:layout_marginTop="88dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_tick" />
+
+
     </android.support.constraint.ConstraintLayout>
 
     <Button

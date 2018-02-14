@@ -12,30 +12,30 @@ public class Session {
 
     private int sessionId;
     // Dot Matrix
-    private int dm_timeTaken;
-    private int dm_falsePos;
-    private int dm_trueNeg;
+    private int dm_timeTaken = 0;
+    private int dm_falsePos = 0;
+    private int dm_trueNeg = 0;
 
     // Square Matrices Direction
-    private int smd_timeTaken;
-    private int smd_correctCars;
-    private int smd_correctLorries;
+    private int smd_timeTaken = 0;
+    private int smd_correctCars = 0;
+    private int smd_correctLorries = 0;
 
     // Square Matrices Compass
-    private int smc_timeTaken;
-    private int smc_redCars;
-    private int smc_blueCars;
+    private int smc_timeTaken = 0;
+    private int smc_redCars = 0;
+    private int smc_blueCars = 0;
 
     // Road sign recognition
-    private int rsr_timeTaken;
-    private int rsr_correctSigns;
+    private int rsr_timeTaken = 0;
+    private int rsr_correctSigns = 0;
 
     // Trail making test
-    private long tmt_timeTakenA;
-    private long tmt_timeTakenB;
+    private long tmt_timeTakenA = 0;
+    private long tmt_timeTakenB = 0;
 
-    private Date creationDate;
-    private Date lastAttemptDate;
+    private Date creationDate = null;
+    private Date lastAttemptDate = null;
 
 
 

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 interface ReviewContract {
     interface IReviewPresenter {
-
+        void calculateAndDisplayFinals();
     }
 
     interface IReviewView {
@@ -28,24 +28,29 @@ interface ReviewContract {
 
         void setTv_rev_sqd_ds(TextView tv_rev_sqd_ds);
 
-        TextView getTv_rev_smd_cd();
-
-        void setTv_rev_smd_cd(TextView tv_rev_smd_cd);
-
         TextView getTv_rev_rsr_ds();
 
         void setTv_rev_rsr_ds(TextView tv_rev_rsr_ds);
 
-        TextView getTv_rev_tmt_tt();
+        TextView getTv_rev_tmt_tt_a();
 
-        void setTv_rev_tmt_tt(TextView tv_rev_tmt_tt);
+        void setTv_rev_tmt_tt_a(TextView tv_rev_tmt_tt_a);
+
+        TextView getTv_rev_tmt_tt_b();
+
+        void setTv_rev_tmt_tt_b(TextView tv_rev_tmt_tt_b);
 
         TextView getTv_rev_smc_cs();
 
         void setTv_rev_smc_cs(TextView tv_rev_smc_cs);
 
-        TextView getTv_rev_smc_ds();
+        TextView getTv_rev_fs_pass();
 
-        void setTv_rev_smc_ds(TextView tv_rev_smc_ds);
+        void setTv_rev_fs_pass(TextView tv_rev_fs_pass);
+
+        TextView getTv_rev_fs_fail();
+
+        void setTv_rev_fs_fail(TextView tv_rev_fs_fail);
+
     }
 }

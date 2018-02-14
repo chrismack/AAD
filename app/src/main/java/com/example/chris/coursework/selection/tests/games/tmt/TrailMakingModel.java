@@ -39,6 +39,8 @@ public class TrailMakingModel extends TestBase {
     private final int imageWidth = 100;
     private final int imageHeight = 100;
 
+    private static final int DOT_LIMIT = 25;
+
     private List<Pair<Integer, Integer>> imagePositions;
 
     public TrailMakingModel(TrailMakingPresenter presenter) {
@@ -130,7 +132,7 @@ public class TrailMakingModel extends TestBase {
         }
     }
 
-    public List<Pair<Integer, Integer>> generateRandomPositions(int count, int minSpaceX, int minSpaceY, int maxX, int maxY, int minX, int minY, long randomSeed) {
+    private List<Pair<Integer, Integer>> generateRandomPositions(int count, int minSpaceX, int minSpaceY, int maxX, int maxY, int minX, int minY, long randomSeed) {
         List<Pair<Integer, Integer>> randomPositions = new ArrayList<>();
 
         List<List<List<Pair<Integer, Integer>>>> regions = new ArrayList<>();
@@ -174,6 +176,10 @@ public class TrailMakingModel extends TestBase {
     public List<Pair<Integer, Integer>> regionsTest(int count, int minSpaceX, int minSpaceY, int maxX, int maxY) {
         // 3 x 3 region
         List<Pair<Integer, Integer>> concatRegions = new ArrayList<>();
+
+        if(count > DOT_LIMIT) {
+            count = DOT_LIMIT;
+        }
 
         int loopCount = 0;
         for(int x = 1; x <= 3; x++) {

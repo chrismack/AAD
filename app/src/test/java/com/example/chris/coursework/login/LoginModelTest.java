@@ -14,7 +14,6 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.reflect.Whitebox;
 
 import static junit.framework.Assert.assertEquals;
-import static org.mockito.Mockito.doReturn;
 
 /**
  * Created by Chris on 12/02/2018.
