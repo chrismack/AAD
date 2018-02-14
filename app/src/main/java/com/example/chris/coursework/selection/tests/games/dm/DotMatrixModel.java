@@ -12,7 +12,9 @@ import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.games.IState;
 import com.example.chris.coursework.selection.tests.games.TestBase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
@@ -53,6 +55,8 @@ public class DotMatrixModel extends TestBase {
     private final float sec1GroupHeight = sec1Height / section1TotalYDots;
     private final float sec2GroupWidth = sec2Width / section2TotalXDots;
     private final float sec2GroupHeight = sec2Height / section2TotalYDots;
+
+    private List<String> touchedMessages = new ArrayList<>();
 
 
     // Answers
@@ -181,6 +185,12 @@ public class DotMatrixModel extends TestBase {
 
         mainModel.updateSession(session);
 
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+        String datestr = sdf.format(date);
+        String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+        mainModel.writeTest("DotCancellation_" + patientFirstLast + "_" + datestr + ".txt", this.touchedMessages);
+
 
         super.finishTest(packageContext);
     }
@@ -293,6 +303,13 @@ public class DotMatrixModel extends TestBase {
                 }
             }
         }
+        if(!isReview) {
+            addPatientTouchedMessage(x, y);
+        }
+    }
+
+    private void addPatientTouchedMessage(float x, float y) {
+        this.touchedMessages.add(((IState) getState()).getName() + " = " + x + " : " + y + " : " + System.currentTimeMillis());
     }
 
     public List<List<Boolean>> getSection1Touched() {

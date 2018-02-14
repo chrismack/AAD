@@ -26,6 +26,11 @@ public class StateManager implements IStateManager{
                 presenter.buildTestArea(8, false);
                 return ReadyA;
             }
+
+            @Override
+            public String getName() {
+                return "Practice A";
+            }
         },
         ReadyA {
             @Override
@@ -33,6 +38,11 @@ public class StateManager implements IStateManager{
                 presenter.buildTestArea(25, false);
                 presenter.disableFinish();
                 return TimingA;
+            }
+
+            @Override
+            public String getName() {
+                return "Ready A";
             }
         },
         TimingA {
@@ -42,6 +52,11 @@ public class StateManager implements IStateManager{
                 presenter.enableFinish();
                 return FinsiedA;
             }
+
+            @Override
+            public String getName() {
+                return "Timing A";
+            }
         },
         FinsiedA {
             @Override
@@ -49,12 +64,22 @@ public class StateManager implements IStateManager{
                 model.getTestATimer().endTimer(System.currentTimeMillis());
                 return PracticeB;
             }
+
+            @Override
+            public String getName() {
+                return "Finished A";
+            }
         },
         PracticeB {
             @Override
             public State runState() {
                 presenter.buildTestArea(8, true);
                 return ReadyB;
+            }
+
+            @Override
+            public String getName() {
+                return "Practice B";
             }
         },
         ReadyB {
@@ -64,6 +89,12 @@ public class StateManager implements IStateManager{
                 presenter.disableFinish();
                 return TimingB;
             }
+
+            @Override
+            public String getName() {
+                return "Ready B";
+            }
+
         },
         TimingB {
             @Override
@@ -71,6 +102,11 @@ public class StateManager implements IStateManager{
                 model.getTestBTimer().startTimer(System.currentTimeMillis());
                 presenter.enableFinish();
                 return FinsiedB;
+            }
+
+            @Override
+            public String getName() {
+                return "Timing B";
             }
         },
         FinsiedB {
@@ -80,10 +116,12 @@ public class StateManager implements IStateManager{
                 model.finishTest(presenter.getContext());
                 return null;
             }
-        };
 
-        @Override
-        public abstract Enum<State> runState();
+            @Override
+            public String getName() {
+                return "Finished B";
+            }
+        };
     }
 
 

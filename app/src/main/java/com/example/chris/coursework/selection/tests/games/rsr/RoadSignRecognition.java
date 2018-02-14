@@ -18,15 +18,19 @@ import com.example.chris.coursework.R;
 import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.TestSelectionView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class RoadSignRecognition extends AppCompatActivity {
 
     private RoadSignRecognition currentView;
+    private List<String> touchMessages = new ArrayList<>();
 
-    Integer roadSigns[] = {R.drawable.sign1, R.drawable.sign2,R.drawable.sign3,R.drawable.sign4,R.drawable.sign5,R.drawable.sign6,R.drawable.sign7,R.drawable.sign8,R.drawable.sign9,R.drawable.sign10,R.drawable.sign11,R.drawable.sign12,R.drawable.rsrexampleanswer};
+    Integer roadSigns[] = {R.drawable.sign1, R.drawable.sign2, R.drawable.sign3, R.drawable.sign4, R.drawable.sign5, R.drawable.sign6, R.drawable.sign7, R.drawable.sign8, R.drawable.sign9, R.drawable.sign10, R.drawable.sign11, R.drawable.sign12, R.drawable.rsrexampleanswer};
 
     ArrayList<Integer> roadSignsArrayList = new ArrayList<>();
     LinearLayout roadSignScrollArray;
@@ -37,7 +41,7 @@ public class RoadSignRecognition extends AppCompatActivity {
     int timeTakenSeconds = 0;
     boolean timeOver = false;
     boolean timerStarted = false;
-    int finalScore =0;
+    int finalScore = 0;
 
     //ImageView roadLayouts1[] = {findViewById(R.id.road1),findViewById(R.id.road2),findViewById(R.id.road3),findViewById(R.id.road4),findViewById(R.id.road5),findViewById(R.id.road6),findViewById(R.id.road7),findViewById(R.id.road8),findViewById(R.id.road9),findViewById(R.id.road10),findViewById(R.id.road11),findViewById(R.id.road12)};
     //ImageView roadOverlay1[] = {findViewById(R.id.road1Overlay),findViewById(R.id.road2Overlay),findViewById(R.id.road3Overlay),findViewById(R.id.road4Overlay),findViewById(R.id.road5Overlay),findViewById(R.id.road6Overlay),findViewById(R.id.road7Overlay),findViewById(R.id.road8Overlay),findViewById(R.id.road9Overlay),findViewById(R.id.road10Overlay),findViewById(R.id.road11Overlay),findViewById(R.id.road12Overlay)};
@@ -64,10 +68,10 @@ public class RoadSignRecognition extends AppCompatActivity {
             }
         };
 
-        ImageView roadLayouts1[] = {findViewById(R.id.road1),findViewById(R.id.road2),findViewById(R.id.road3),findViewById(R.id.road4),findViewById(R.id.road5),findViewById(R.id.road6),findViewById(R.id.road7),findViewById(R.id.road8),findViewById(R.id.road9),findViewById(R.id.road10),findViewById(R.id.road11),findViewById(R.id.road12),findViewById(R.id.example)};
-        ImageView roadOverlay1[] = {findViewById(R.id.road1Overlay),findViewById(R.id.road2Overlay),findViewById(R.id.road3Overlay),findViewById(R.id.road4Overlay),findViewById(R.id.road5Overlay),findViewById(R.id.road6Overlay),findViewById(R.id.road7Overlay),findViewById(R.id.road8Overlay),findViewById(R.id.road9Overlay),findViewById(R.id.road10Overlay),findViewById(R.id.road11Overlay),findViewById(R.id.road12Overlay),findViewById(R.id.exampleOverlay)};
-        Collections.addAll(roadLayouts,roadLayouts1);
-        Collections.addAll(roadOverlay,roadOverlay1);
+        ImageView roadLayouts1[] = {findViewById(R.id.road1), findViewById(R.id.road2), findViewById(R.id.road3), findViewById(R.id.road4), findViewById(R.id.road5), findViewById(R.id.road6), findViewById(R.id.road7), findViewById(R.id.road8), findViewById(R.id.road9), findViewById(R.id.road10), findViewById(R.id.road11), findViewById(R.id.road12), findViewById(R.id.example)};
+        ImageView roadOverlay1[] = {findViewById(R.id.road1Overlay), findViewById(R.id.road2Overlay), findViewById(R.id.road3Overlay), findViewById(R.id.road4Overlay), findViewById(R.id.road5Overlay), findViewById(R.id.road6Overlay), findViewById(R.id.road7Overlay), findViewById(R.id.road8Overlay), findViewById(R.id.road9Overlay), findViewById(R.id.road10Overlay), findViewById(R.id.road11Overlay), findViewById(R.id.road12Overlay), findViewById(R.id.exampleOverlay)};
+        Collections.addAll(roadLayouts, roadLayouts1);
+        Collections.addAll(roadOverlay, roadOverlay1);
 
         findViewById(R.id.FinishButton).setOnClickListener(new onLongClick());
 
@@ -78,19 +82,16 @@ public class RoadSignRecognition extends AppCompatActivity {
         roadSignScrollArray = new LinearLayout(this);
         roadSignScrollArray = findViewById(R.id.roadSignScroll);
         repopulateRoadScrollView();
-        for (int i=0; i <roadOverlay.size(); i++)
-        {
+        for (int i = 0; i < roadOverlay.size(); i++) {
             roadLayouts.get(i).setOnDragListener(new dragListener());
             roadOverlay.get(i).setOnLongClickListener(new onLongClick());
         }
     }
 
-    private int getScore(){
+    private int getScore() {
         int tempScore = 0;
-        for (int i = 0; i < roadOverlay.size()-1; i++)
-        {
-            if (roadSigns[i] == roadOverlay.get(i).getTag())
-            {
+        for (int i = 0; i < roadOverlay.size() - 1; i++) {
+            if (roadSigns[i] == roadOverlay.get(i).getTag()) {
                 tempScore++;
             }
         }
@@ -98,7 +99,7 @@ public class RoadSignRecognition extends AppCompatActivity {
     }
 
 
-    private final class onLongClick implements View.OnLongClickListener, View.OnClickListener{
+    private final class onLongClick implements View.OnLongClickListener, View.OnClickListener {
 
 
         @Override
@@ -110,8 +111,7 @@ public class RoadSignRecognition extends AppCompatActivity {
 
             System.out.println(view.getTag());
             System.out.println(roadSigns[12]);
-            if ((!timerStarted) && (view.getTag() != roadSigns[12]))
-            {
+            if ((!timerStarted) && (view.getTag() != roadSigns[12])) {
                 timer.start();
                 System.out.println("Timer Started");
                 timerStarted = true;
@@ -121,29 +121,38 @@ public class RoadSignRecognition extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            if (view == findViewById(R.id.FinishButton))
-            {
+            if (view == findViewById(R.id.FinishButton)) {
                 //record scores
-                if (!timeOver)
-                {
+                if (!timeOver) {
                     finalScore = getScore();
+
                     timer.cancel();
                     MainModel mainModel = MainModel.getInstance(currentView);
                     Session session = mainModel.getCurrentSession();
                     session.setRsr_correctSigns(finalScore);
                     session.setRsr_timeTaken(timeTakenSeconds);
                     mainModel.updateSession(session);
+
+                    Date date = new Date(System.currentTimeMillis());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+                    String datestr = sdf.format(date);
+                    String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+                    mainModel.writeTest("RoadSignRecognition_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
                 }
+
                 Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
                 startActivity(intent);
             }
         }
     }
-    private final class dragListener implements View.OnDragListener
-    {
+
+    private final class dragListener implements View.OnDragListener {
 
         @Override
         public boolean onDrag(View view, DragEvent dragEvent) {
+
+            touchMessages.add(dragEvent.getAction() + " = " + dragEvent.getX() + " : " + dragEvent.getY() + " : " + System.currentTimeMillis());
+
             int action = dragEvent.getAction();
             switch (action) {
                 case DragEvent.ACTION_DRAG_STARTED:
@@ -163,8 +172,7 @@ public class RoadSignRecognition extends AppCompatActivity {
                     ImageView container = (ImageView) view;
                     ViewGroup overlayView = (ViewGroup) view.getParent();
                     ImageView containerOverlayImage = (ImageView) overlayView.getChildAt(1);
-                    if (((overlayView.getId() == R.id.roadSignScroll)) || (draggedFrom.getTag() == containerOverlayImage.getTag()) || (containerOverlayImage.getDrawable() != null))
-                    {
+                    if (((overlayView.getId() == R.id.roadSignScroll)) || (draggedFrom.getTag() == containerOverlayImage.getTag()) || (containerOverlayImage.getDrawable() != null)) {
                         break;
                     }
                     System.out.println(overlayView.getChildAt(1).getId());
@@ -188,11 +196,9 @@ public class RoadSignRecognition extends AppCompatActivity {
         }
     }
 
-    private void repopulateRoadScrollView()
-    {
+    private void repopulateRoadScrollView() {
         roadSignScrollArray.removeAllViews();
-        for (int i =0; i < roadSignsArrayList.size(); i++)
-        {
+        for (int i = 0; i < roadSignsArrayList.size(); i++) {
             ImageView roadSign = new ImageView(this);
             roadSign.setImageResource(roadSignsArrayList.get(i));
             roadSign.setTag(roadSignsArrayList.get(i));

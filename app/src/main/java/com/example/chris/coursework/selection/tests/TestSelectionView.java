@@ -4,9 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.ToggleButton;
 
+import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.R;
 
 public class TestSelectionView extends AppCompatActivity implements TestSelectionContract.ITestSelectionView{
@@ -16,6 +19,8 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
     RadioGroup rg_testSelection;
     Button btn_testConfirm;
     ImageView tmt_check, dc_check, rsr_check, smd_check, smc_check;
+
+    ToggleButton tbtn_motCap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,17 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
         smd_check = (ImageView) findViewById(R.id.img_ts_smd_check);
         smc_check = (ImageView) findViewById(R.id.img_ts_smc_check);
 
+        this.presenter = new TestSelectionPresenter(this);
+
+        tbtn_motCap = (ToggleButton) findViewById(R.id.tbtn_motCap);
+        tbtn_motCap.setChecked(MainModel.getInstance(this).isRecordMotions());
+        tbtn_motCap.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                onMotionToggle(b);
+            }
+        });
+
         rg_testSelection.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -38,7 +54,6 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
             }
         });
 
-        this.presenter = new TestSelectionPresenter(this);
         this.presenter.displayCompleted();
     }
 
@@ -70,6 +85,11 @@ public class TestSelectionView extends AppCompatActivity implements TestSelectio
     @Override
     public void onReview(View view) {
         this.presenter.showReview();
+    }
+
+    @Override
+    public void onMotionToggle(boolean bool) {
+        this.presenter.toggleMotionCapture(bool);
     }
 
     public ImageView getTmt_check() {

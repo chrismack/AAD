@@ -23,6 +23,11 @@ public class StateManager implements IStateManager {
             public Enum<?> runState() {
                 return Timing;
             }
+
+            @Override
+            public String getName() {
+                return "Practice";
+            }
         },
         Timing {
             @Override
@@ -31,11 +36,21 @@ public class StateManager implements IStateManager {
                 model.setTimerRan(true);
                 return TimeOver;
             }
+
+            @Override
+            public String getName() {
+                return "Timing";
+            }
         },
         TimeOver {
             @Override
             public Enum<?> runState() {
                 return Finish;
+            }
+
+            @Override
+            public String getName() {
+                return "Time Over";
             }
         },
         Finish {
@@ -44,6 +59,11 @@ public class StateManager implements IStateManager {
                 presenter.showReviewing();
                 return Reviewing;
             }
+
+            @Override
+            public String getName() {
+                return "Finished";
+            }
         },
         Reviewing {
             @Override
@@ -51,11 +71,11 @@ public class StateManager implements IStateManager {
                 model.finishTest(presenter.getContext());
                 return null;
             }
-        };
 
-        @Override
-        public Enum<?> runState() {
-            return null;
-        }
+            @Override
+            public String getName() {
+                return "Reviewing";
+            }
+        };
     }
 }

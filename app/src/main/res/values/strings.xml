@@ -44,4 +44,7 @@
     <string name="reviewPatient">Review Patient Tests</string>
     <string name="sel_pat">Select Patient</string>
     <string name="sel_ses">Select Session</string>
+    <string name="tgl_motionEvent">Toggle Motion Event</string>
+    <string name="rec_mtn_evnt">Record Motion Event On</string>
+    <string name="no_rec_mtn_evnt">Record Motion Event Off</string>
 </resources>

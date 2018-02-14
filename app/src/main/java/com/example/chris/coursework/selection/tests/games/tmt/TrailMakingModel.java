@@ -3,6 +3,7 @@ package com.example.chris.coursework.selection.tests.games.tmt;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 
 import com.example.chris.coursework.MainModel;
 import com.example.chris.coursework.common.Pair;
@@ -16,7 +17,9 @@ import com.example.chris.coursework.selection.tests.games.TestBase;
 
 import junit.framework.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -43,6 +46,10 @@ public class TrailMakingModel extends TestBase {
 
     private List<Pair<Integer, Integer>> imagePositions;
 
+    private List<String> touchedPositions;
+
+    private MainModel mainModel;
+
     public TrailMakingModel(TrailMakingPresenter presenter) {
         super();
         this.presenter = presenter;
@@ -64,6 +71,9 @@ public class TrailMakingModel extends TestBase {
 
         this.drawView = new DrawingView(presenter.getView(), this.paintSettings);
         this.imagePositions = new ArrayList<>();
+
+        mainModel = MainModel.getInstance(this.presenter.getView());
+        this.touchedPositions = new ArrayList<>();
     }
 
     public Paint getPaintSettings() {
@@ -106,7 +116,14 @@ public class TrailMakingModel extends TestBase {
         Session session = MainModel.getInstance(this.presenter.getView()).getCurrentSession();
         session.setTmt_timeTakenA(this.getTestATimer().getTimeElapsedSeconds());
         session.setTmt_timeTakenB(this.getTestBTimer().getTimeElapsedSeconds());
-        MainModel.getInstance(this.presenter.getView()).updateSession(session);
+        mainModel.updateSession(session);
+
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+        String datestr = sdf.format(date);
+        String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+        mainModel.writeTest("TrailMaking_" + patientFirstLast + "_" + datestr + ".txt", this.touchedPositions);
+
         super.finishTest(packageContext);
     }
 
@@ -126,10 +143,13 @@ public class TrailMakingModel extends TestBase {
         this.testBTimer = testBTimer;
     }
 
-    public void testTouched() {
+    public void testTouched(MotionEvent event) {
         if(getState() == StateManager.State.TimingA || getState() == StateManager.State.TimingB) {
             setState((Enum<? extends IState>) ((IState)getState()).runState());
         }
+
+        this.touchedPositions.add(((IState) getState()).getName() + " = " + event.getX() + " : " + event.getY() + " : " + System.currentTimeMillis());
+
     }
 
     private List<Pair<Integer, Integer>> generateRandomPositions(int count, int minSpaceX, int minSpaceY, int maxX, int maxY, int minX, int minY, long randomSeed) {

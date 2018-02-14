@@ -32,10 +32,6 @@ public class TrailMakingPresenter implements TrailMakingContract.ITrailMakingPre
         this.context = view.getApplicationContext();
 
         this.model.runTest();
-
-//        model.regionsTest(count, model.getImageWidth() / 2 + 10, model.getImageHeight() / 2 + 10, 1594 - 150, 2058 - 150);
-
-
     }
 
     @Override
@@ -87,7 +83,7 @@ public class TrailMakingPresenter implements TrailMakingContract.ITrailMakingPre
         model.getDrawView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                model.testTouched();
+                model.testTouched(motionEvent);
                 return false;
             }
         });

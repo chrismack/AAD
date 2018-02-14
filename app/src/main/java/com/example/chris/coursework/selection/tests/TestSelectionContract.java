@@ -18,6 +18,8 @@ public interface TestSelectionContract {
         void showReview();
 
         void displayCompleted();
+
+        void toggleMotionCapture(boolean bool);
     }
 
     interface ITestSelectionView {
@@ -32,5 +34,7 @@ public interface TestSelectionContract {
         void onTestConfirmed(View view);
 
         void onReview(View view);
+
+        void onMotionToggle(boolean bool);
     }
 }

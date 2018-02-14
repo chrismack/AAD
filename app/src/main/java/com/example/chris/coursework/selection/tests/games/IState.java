@@ -6,4 +6,5 @@ package com.example.chris.coursework.selection.tests.games;
 
 public interface IState {
     Enum<?> runState();
+    String getName();
 }

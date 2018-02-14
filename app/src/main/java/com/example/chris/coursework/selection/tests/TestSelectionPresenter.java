@@ -91,4 +91,9 @@ public class TestSelectionPresenter implements TestSelectionContract.ITestSelect
             this.view.getSmd_check().setVisibility(View.VISIBLE);
         }
     }
+
+    @Override
+    public void toggleMotionCapture(boolean toggle) {
+        MainModel.getInstance(this.view).setRecordMotions(toggle);
+    }
 }

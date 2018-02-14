@@ -37,8 +37,11 @@ import com.example.chris.coursework.data.entities.Session;
 import com.example.chris.coursework.selection.tests.TestSelectionView;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -47,6 +50,7 @@ import java.util.Collections;
 public class Compass extends AppCompatActivity {
 
     private Compass currentView;
+    private List<String> touchMessages = new ArrayList<>();
 
     Integer carImages1[] = {R.drawable.car_east_northeast, R.drawable.car_east_northwest, R.drawable.car_east_southeast,
             R.drawable.car_north_northeast, R.drawable.car_north_northwest, R.drawable.car_north_southeast, R.drawable.car_north_southwest, R.drawable.car_north_west,
@@ -57,8 +61,7 @@ public class Compass extends AppCompatActivity {
             R.drawable.careastsouthwest, R.drawable.careastwest, R.drawable.carnortheast, R.drawable.carnorthsouth, R.drawable.carsouthwest, R.drawable.carwestsoutheast};
 
 
-
-    int[] boardArray = {R.id.option1,R.id.option2,R.id.option3,R.id.option4,R.id.option5,R.id.option6,R.id.option7,R.id.option8,R.id.option9,R.id.option10,R.id.option11,R.id.option12,R.id.option13,R.id.option14,R.id.option15,R.id.option16};
+    int[] boardArray = {R.id.option1, R.id.option2, R.id.option3, R.id.option4, R.id.option5, R.id.option6, R.id.option7, R.id.option8, R.id.option9, R.id.option10, R.id.option11, R.id.option12, R.id.option13, R.id.option14, R.id.option15, R.id.option16};
 
     ArrayList<Integer> carImages = new ArrayList<>();
     ArrayList<Integer> binImages = new ArrayList<>();
@@ -69,13 +72,13 @@ public class Compass extends AppCompatActivity {
     int timeTakenSeconds = 0;
     boolean timeOver = false;
     boolean timerStarted = false;
-    int finalScore =0;
+    int finalScore = 0;
     //timesUp = false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Collections.addAll(carImages,carImages1);
+        Collections.addAll(carImages, carImages1);
         setContentView(R.layout.activity_compass);
         currentView = this;
 
@@ -99,36 +102,55 @@ public class Compass extends AppCompatActivity {
         cardSlotImage.setTag(carImages.get(5));
 
         findViewById(R.id.cardSlot).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option1).setOnDragListener(new dragListener());findViewById(R.id.option1).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option2).setOnDragListener(new dragListener());findViewById(R.id.option2).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option3).setOnDragListener(new dragListener());findViewById(R.id.option3).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option4).setOnDragListener(new dragListener());findViewById(R.id.option4).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option5).setOnDragListener(new dragListener());findViewById(R.id.option5).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option6).setOnDragListener(new dragListener());findViewById(R.id.option6).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option7).setOnDragListener(new dragListener());findViewById(R.id.option7).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option8).setOnDragListener(new dragListener());findViewById(R.id.option8).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option9).setOnDragListener(new dragListener());findViewById(R.id.option9).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option10).setOnDragListener(new dragListener());findViewById(R.id.option10).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option11).setOnDragListener(new dragListener());findViewById(R.id.option11).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option12).setOnDragListener(new dragListener());findViewById(R.id.option12).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option13).setOnDragListener(new dragListener());findViewById(R.id.option13).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option14).setOnDragListener(new dragListener());findViewById(R.id.option14).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option15).setOnDragListener(new dragListener());findViewById(R.id.option15).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.option16).setOnDragListener(new dragListener());findViewById(R.id.option16).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.bin).setOnDragListener(new dragListener());findViewById(R.id.bin).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.placeholder1).setOnDragListener(new dragListener());findViewById(R.id.placeholder1).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.placeholder2).setOnDragListener(new dragListener());findViewById(R.id.placeholder2).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.placeholder3).setOnDragListener(new dragListener());findViewById(R.id.placeholder3).setOnTouchListener(new dragTouchListener());
-        findViewById(R.id.placeholder4).setOnDragListener(new dragListener());findViewById(R.id.placeholder4).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option1).setOnDragListener(new dragListener());
+        findViewById(R.id.option1).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option2).setOnDragListener(new dragListener());
+        findViewById(R.id.option2).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option3).setOnDragListener(new dragListener());
+        findViewById(R.id.option3).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option4).setOnDragListener(new dragListener());
+        findViewById(R.id.option4).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option5).setOnDragListener(new dragListener());
+        findViewById(R.id.option5).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option6).setOnDragListener(new dragListener());
+        findViewById(R.id.option6).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option7).setOnDragListener(new dragListener());
+        findViewById(R.id.option7).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option8).setOnDragListener(new dragListener());
+        findViewById(R.id.option8).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option9).setOnDragListener(new dragListener());
+        findViewById(R.id.option9).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option10).setOnDragListener(new dragListener());
+        findViewById(R.id.option10).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option11).setOnDragListener(new dragListener());
+        findViewById(R.id.option11).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option12).setOnDragListener(new dragListener());
+        findViewById(R.id.option12).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option13).setOnDragListener(new dragListener());
+        findViewById(R.id.option13).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option14).setOnDragListener(new dragListener());
+        findViewById(R.id.option14).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option15).setOnDragListener(new dragListener());
+        findViewById(R.id.option15).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.option16).setOnDragListener(new dragListener());
+        findViewById(R.id.option16).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.bin).setOnDragListener(new dragListener());
+        findViewById(R.id.bin).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.placeholder1).setOnDragListener(new dragListener());
+        findViewById(R.id.placeholder1).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.placeholder2).setOnDragListener(new dragListener());
+        findViewById(R.id.placeholder2).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.placeholder3).setOnDragListener(new dragListener());
+        findViewById(R.id.placeholder3).setOnTouchListener(new dragTouchListener());
+        findViewById(R.id.placeholder4).setOnDragListener(new dragListener());
+        findViewById(R.id.placeholder4).setOnTouchListener(new dragTouchListener());
         findViewById(R.id.finishButton).setOnTouchListener(new dragTouchListener());
 
     }
 
-    private void generateBoardArrayCoordinates()
-    {
+    private void generateBoardArrayCoordinates() {
         int[] imgCoordinates = new int[2];
-        for (int i =0; i < boardArray.length; i++)
-        {
+        for (int i = 0; i < boardArray.length; i++) {
             boardCoordinates coordinates = new boardCoordinates();
             findViewById(boardArray[i]).getLocationInWindow(imgCoordinates);
             coordinates.setViewID(boardArray[i]);
@@ -141,8 +163,7 @@ public class Compass extends AppCompatActivity {
         boardGenerated = true;
     }
 
-    private void addDirectionsToDrawables()
-    {
+    private void addDirectionsToDrawables() {
         addDrawableToArray(carImages1[0], "E", "NE");
         addDrawableToArray(carImages1[1], "E", "NW");
         addDrawableToArray(carImages1[2], "E", "SE");
@@ -173,8 +194,7 @@ public class Compass extends AppCompatActivity {
         addDrawableToArray(carImages1[27], "W", "SE");
     }
 
-    private void addDrawableToArray(int drawableInt, String firstDirection, String secondDirection)
-    {
+    private void addDrawableToArray(int drawableInt, String firstDirection, String secondDirection) {
         roundaboutTags rt = new roundaboutTags();
         rt.setTagID(drawableInt);
         rt.setFirstDirection(firstDirection);
@@ -182,28 +202,20 @@ public class Compass extends AppCompatActivity {
         rtArray.add(rt);
     }
 
-    private int scoreCars()
-    {
+    private int scoreCars() {
         int finalScore = 0;
-        if (!boardGenerated)
-        {
+        if (!boardGenerated) {
             generateBoardArrayCoordinates();
         }
-        for (int i = 0; i < coordinatesArray.size(); i++)
-        {
-            for (int j = 0; j < rtArray.size(); j++)
-            {
-                if (findViewById(coordinatesArray.get(i).getViewID()).getTag() != null)
-                {
+        for (int i = 0; i < coordinatesArray.size(); i++) {
+            for (int j = 0; j < rtArray.size(); j++) {
+                if (findViewById(coordinatesArray.get(i).getViewID()).getTag() != null) {
                     int coordinatesTag = Integer.valueOf(findViewById(coordinatesArray.get(i).getViewID()).getTag().toString());
-                    if (coordinatesTag == rtArray.get(j).getTagID())
-                    {
-                        if ((rtArray.get(j).getFirstDirection() == coordinatesArray.get(i).getFirstDirection()) || (rtArray.get(j).getFirstDirection() == coordinatesArray.get(i).getSecondDirection()))
-                        {
+                    if (coordinatesTag == rtArray.get(j).getTagID()) {
+                        if ((rtArray.get(j).getFirstDirection() == coordinatesArray.get(i).getFirstDirection()) || (rtArray.get(j).getFirstDirection() == coordinatesArray.get(i).getSecondDirection())) {
                             finalScore++;
                         }
-                        if ((rtArray.get(j).getSecondDirection() == coordinatesArray.get(i).getFirstDirection()) || (rtArray.get(j).getSecondDirection() == coordinatesArray.get(i).getSecondDirection()))
-                        {
+                        if ((rtArray.get(j).getSecondDirection() == coordinatesArray.get(i).getFirstDirection()) || (rtArray.get(j).getSecondDirection() == coordinatesArray.get(i).getSecondDirection())) {
                             finalScore++;
                         }
                     }
@@ -216,8 +228,10 @@ public class Compass extends AppCompatActivity {
     private final class dragTouchListener implements View.OnTouchListener {
         @Override
         public boolean onTouch(View view, MotionEvent event) {
-            if ((!timerStarted) && (view.getTag() != carImages1[5]))
-            {
+
+            touchMessages.add(event.getAction() + " = " + event.getX() + " : " + event.getY() + " : " + System.currentTimeMillis());
+
+            if ((!timerStarted) && (view.getTag() != carImages1[5])) {
                 timer.start();
                 timerStarted = true;
             }
@@ -229,11 +243,9 @@ public class Compass extends AppCompatActivity {
                     return true;
                 }
             }
-            if (view == findViewById(R.id.finishButton))
-            {
+            if (view == findViewById(R.id.finishButton)) {
 
-                if (!timeOver)
-                {
+                if (!timeOver) {
                     finalScore = scoreCars();
                     timer.cancel();
                     MainModel mainModel = MainModel.getInstance(currentView);
@@ -241,15 +253,21 @@ public class Compass extends AppCompatActivity {
                     session.setSmc_timeTaken(timeTakenSeconds);
                     session.setSmc_blueCars(finalScore);
                     mainModel.updateSession(session);
+
+                    Date date = new Date(System.currentTimeMillis());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+                    String datestr = sdf.format(date);
+                    String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+                    mainModel.writeTest("Compass_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
+
                 }
+
                 Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
                 startActivity(intent);
                 //System.out.println("The current score is: "+ ); //Replace with score sent to scoresheet.
             }
-            if (view == findViewById(R.id.bin))
-            {
-                for (int i = 0; i < binImages.size(); i++)
-                {
+            if (view == findViewById(R.id.bin)) {
+                for (int i = 0; i < binImages.size(); i++) {
                     carImages.add(binImages.get(i));
                 }
                 binImages.clear();
@@ -260,8 +278,7 @@ public class Compass extends AppCompatActivity {
         }
     }
 
-    private void populateCardSlot()
-    {
+    private void populateCardSlot() {
         if (carImages.size() != 0) {
             int random = (int) (Math.random() * carImages.size() + 0);
             ImageView cardSlotImage = findViewById(R.id.cardSlot);
@@ -269,15 +286,18 @@ public class Compass extends AppCompatActivity {
             cardSlotImage.setTag(carImages.get(random));
         }
     }
+
     private final class dragListener implements View.OnDragListener {
         @Override
         public boolean onDrag(View view, DragEvent dragEvent) {
+
+            touchMessages.add(dragEvent.getAction() + " = " + dragEvent.getX() + " : " + dragEvent.getY() + " : " + System.currentTimeMillis());
+
             int action = dragEvent.getAction();
             switch (action) {
                 case DragEvent.ACTION_DRAG_STARTED:
                     if (dragEvent.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                         return true;
-                    } else {
                     }
                     return false;
                 case DragEvent.ACTION_DRAG_ENTERED:
@@ -287,15 +307,13 @@ public class Compass extends AppCompatActivity {
                 case DragEvent.ACTION_DROP:
                     view.invalidate();
                     ImageView draggedFrom = (ImageView) dragEvent.getLocalState();
-                    if ((((ImageView) view).getDrawable()!=null) && ((view.getId() != R.id.bin)))
-                    {
+                    if ((((ImageView) view).getDrawable() != null) && ((view.getId() != R.id.bin))) {
                         break;
                     }
                     if (view.getId() == R.id.bin) {
                         carImages.remove(draggedFrom.getTag());
                         binImages.add(Integer.valueOf(draggedFrom.getTag().toString()));
-                    }
-                    else {
+                    } else {
                         ImageView container = (ImageView) view;
                         container.setImageDrawable(((ImageView) draggedFrom).getDrawable());
                         container.setTag(draggedFrom.getTag());
@@ -305,8 +323,7 @@ public class Compass extends AppCompatActivity {
                     if (draggedFrom.getId() == R.id.cardSlot) {
                         carImages.remove(draggedFrom.getTag());
                         populateCardSlot();
-                    }
-                    else{
+                    } else {
                         draggedFrom.setTag(null);
                     }
                     return true;
