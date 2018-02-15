@@ -148,19 +148,31 @@ public class Compass extends AppCompatActivity {
 
     }
 
-    private void generateBoardArrayCoordinates() {
-        int[] imgCoordinates = new int[2];
-        for (int i = 0; i < boardArray.length; i++) {
-            boardCoordinates coordinates = new boardCoordinates();
-            findViewById(boardArray[i]).getLocationInWindow(imgCoordinates);
-            coordinates.setViewID(boardArray[i]);
-            coordinates.setX(imgCoordinates[0]);
-            coordinates.setY(imgCoordinates[1]);
-            //System.out.println(coordinates.getFirstDirection() + " " +coordinates.getSecondDirection());
-            //System.out.println(imgCoordinates[1]);
-            coordinatesArray.add(coordinates);
-        }
+    private void addDirectionsToBoard(){
+        addBoardToArray(boardArray[0], "SE", "W");
+        addBoardToArray(boardArray[1], "NE", "W");
+        addBoardToArray(boardArray[2], "SW", "W");
+        addBoardToArray(boardArray[3], "E", "W");
+        addBoardToArray(boardArray[4], "SE", "NW");
+        addBoardToArray(boardArray[5], "NE", "NW");
+        addBoardToArray(boardArray[6], "SW", "NW");
+        addBoardToArray(boardArray[7], "E", "NW");
+        addBoardToArray(boardArray[8], "SE", "N");
+        addBoardToArray(boardArray[9], "NE", "N");
+        addBoardToArray(boardArray[10], "SW", "N");
+        addBoardToArray(boardArray[11], "E", "N");
+        addBoardToArray(boardArray[12], "SE", "S");
+        addBoardToArray(boardArray[13], "NE", "S");
+        addBoardToArray(boardArray[14], "SW", "S");
+        addBoardToArray(boardArray[15], "E", "S");
         boardGenerated = true;
+    }
+    private void addBoardToArray(int boardPosition, String firstDirection, String secondDirection ){
+        boardCoordinates bc = new boardCoordinates();
+        bc.setViewID(boardPosition);
+        bc.setFirstDirection(firstDirection);
+        bc.setSecondDirection(secondDirection);
+        coordinatesArray.add(bc);
     }
 
     private void addDirectionsToDrawables() {
@@ -205,7 +217,7 @@ public class Compass extends AppCompatActivity {
     private int scoreCars() {
         int finalScore = 0;
         if (!boardGenerated) {
-            generateBoardArrayCoordinates();
+            addDirectionsToBoard();
         }
         for (int i = 0; i < coordinatesArray.size(); i++) {
             for (int j = 0; j < rtArray.size(); j++) {
@@ -231,6 +243,7 @@ public class Compass extends AppCompatActivity {
 
             touchMessages.add(event.getAction() + " = " + event.getX() + " : " + event.getY() + " : " + System.currentTimeMillis());
 
+            System.out.println(scoreCars());
             if ((!timerStarted) && (view.getTag() != carImages1[5])) {
                 timer.start();
                 timerStarted = true;

@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 android:layout_column="1"
                 android:background="@android:color/black"
                 android:scaleType="fitCenter"
@@ -34,22 +34,21 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/northeast" />
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/southwest" />
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/east" />
         </TableRow>
 
@@ -60,29 +59,29 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/west" />
 
             <ImageView
                 android:id="@+id/option1"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option2"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option3"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option4"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
         </TableRow>
 
         <TableRow
@@ -91,29 +90,29 @@
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/northwest" />
 
             <ImageView
                 android:id="@+id/option5"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option6"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option7"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option8"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
         </TableRow>
 
         <TableRow
@@ -122,29 +121,29 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/north" />
 
             <ImageView
                 android:id="@+id/option9"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option10"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option11"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option12"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
         </TableRow>
 
         <TableRow
@@ -153,29 +152,29 @@
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/south" />
 
             <ImageView
                 android:id="@+id/option13"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option14"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option15"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/option16"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
         </TableRow>
 
         <TableRow
@@ -184,26 +183,26 @@
 
             <ImageView
                 android:id="@+id/bin"
-                android:layout_width="310px"
-                android:layout_height="310px"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
                 app:srcCompat="@drawable/discardbox" />
 
             <ImageView
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/cardSlot"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
         </TableRow>
 
@@ -213,23 +212,23 @@
 
             <ImageView
                 android:id="@+id/placeholder1"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/placeholder2"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/placeholder3"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <ImageView
                 android:id="@+id/placeholder4"
-                android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_width="155dp"
+                android:layout_height="155dp" />
 
             <Button
                 android:id="@+id/finishButton"

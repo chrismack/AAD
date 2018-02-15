@@ -111,8 +111,7 @@ public class RoadSignRecognition extends AppCompatActivity {
             String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
             view.startDragAndDrop(data, shadowBuilder, view, 0);
 
-            System.out.println(view.getTag());
-            System.out.println(roadSigns[12]);
+            System.out.println("Clicked on tag: "+view.getTag());
             if ((!timerStarted) && (view.getTag() != roadSigns[12])) {
                 timer.start();
                 System.out.println("Timer Started");
@@ -123,6 +122,7 @@ public class RoadSignRecognition extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            System.out.println(getScore());
             if (view == findViewById(R.id.FinishButton)) {
                 //record scores
                 if (!timeOver) {
@@ -171,7 +171,7 @@ public class RoadSignRecognition extends AppCompatActivity {
                     view.invalidate();
                     ImageView draggedFrom = (ImageView) dragEvent.getLocalState();
                     ViewGroup overlayView = (ViewGroup) view.getParent();
-                    ImageView containerOverlayImage = (ImageView) overlayView.getChildAt(1);
+                    System.out.println("Dragged into tag: " + overlayView.getTag());
                     if (view.getId() == draggedFrom.getId())
                     {
                         break;
@@ -179,11 +179,12 @@ public class RoadSignRecognition extends AppCompatActivity {
                     if ((view.getId() == R.id.scrollRoad) || (overlayView.getId() == R.id.roadSignScroll))
                     {
                         roadSignsArrayList.add(Integer.valueOf(draggedFrom.getTag().toString()));
-                        repopulateRoadScrollView();
-                        draggedFrom.setImageDrawable(null);
                         draggedFrom.setTag(null);
+                        draggedFrom.setImageDrawable(null);
+                        repopulateRoadScrollView();
                         break;
                     }
+                    ImageView containerOverlayImage = (ImageView) overlayView.getChildAt(1);
                     if ((draggedFrom.getTag() == containerOverlayImage.getTag()) || (containerOverlayImage.getDrawable() != null)) {
                         break;
                     }
@@ -215,6 +216,7 @@ public class RoadSignRecognition extends AppCompatActivity {
             ImageView roadSign = new ImageView(this);
             roadSign.setImageResource(roadSignsArrayList.get(i));
             roadSign.setTag(roadSignsArrayList.get(i));
+            System.out.println(roadSign.getTag());
             roadSignScrollArray.addView(roadSign);
             roadSign.setOnLongClickListener(new onLongClick());
             roadSign.setOnDragListener(new dragListener());
