@@ -27,7 +27,7 @@ public class truckCarMatrix extends AppCompatActivity {
     private truckCarMatrix currentView;
     private List<String> touchMessages = new ArrayList<>();
 
-    Integer carImages1[] = {R.drawable.example, R.drawable.car1, R.drawable.car2, R.drawable.car3, R.drawable.car4, R.drawable.car5, R.drawable.car6, R.drawable.car6, R.drawable.car7, R.drawable.car8, R.drawable.car9, R.drawable.car10, R.drawable.car12, R.drawable.car13, R.drawable.car14, R.drawable.car15};
+    Integer carImages1[] = {R.drawable.example, R.drawable.car1, R.drawable.car2, R.drawable.car3, R.drawable.car4, R.drawable.car5, R.drawable.car6, R.drawable.car7, R.drawable.car8, R.drawable.car9, R.drawable.car10, R.drawable.car11, R.drawable.car12, R.drawable.car13, R.drawable.car14, R.drawable.car15};
 
 
     int[] boardArray = {R.id.option1, R.id.option2, R.id.option3, R.id.option4, R.id.option5, R.id.option6, R.id.option7, R.id.option8, R.id.option9, R.id.option10, R.id.option11, R.id.option12, R.id.option13, R.id.option14, R.id.option15, R.id.option16};
@@ -117,19 +117,31 @@ public class truckCarMatrix extends AppCompatActivity {
 
     }
 
-    private void generateBoardArrayCoordinates() {
-        int[] imgCoordinates = new int[2];
-        for (int i = 0; i < boardArray.length; i++) {
-            boardCoordinates coordinates = new boardCoordinates();
-            findViewById(boardArray[i]).getLocationInWindow(imgCoordinates);
-            coordinates.setViewID(boardArray[i]);
-            coordinates.setX(imgCoordinates[0]);
-            coordinates.setY(imgCoordinates[1]);
-            //System.out.println(coordinates.getFirstDirection() + " " +coordinates.getSecondDirection());
-            //System.out.println(imgCoordinates[1]);
-            coordinatesArray.add(coordinates);
-        }
+    private void addDirectionsToBoard(){
+        addBoardToArray(boardArray[0], "E", "N");
+        addBoardToArray(boardArray[1], "N", "N");
+        addBoardToArray(boardArray[2], "W", "N");
+        addBoardToArray(boardArray[3], "S", "N");
+        addBoardToArray(boardArray[4], "E", "S");
+        addBoardToArray(boardArray[5], "N", "S");
+        addBoardToArray(boardArray[6], "W", "S");
+        addBoardToArray(boardArray[7], "S", "S");
+        addBoardToArray(boardArray[8], "E", "E");
+        addBoardToArray(boardArray[9], "N", "E");
+        addBoardToArray(boardArray[10], "W", "E");
+        addBoardToArray(boardArray[11], "S", "E");
+        addBoardToArray(boardArray[12], "E", "W");
+        addBoardToArray(boardArray[13], "N", "W");
+        addBoardToArray(boardArray[14], "W", "W");
+        addBoardToArray(boardArray[15], "S", "W");
         boardGenerated = true;
+    }
+    private void addBoardToArray(int boardPosition, String firstDirection, String secondDirection ){
+        boardCoordinates bc = new boardCoordinates();
+        bc.setViewID(boardPosition);
+        bc.setFirstDirection(firstDirection);
+        bc.setSecondDirection(secondDirection);
+        coordinatesArray.add(bc);
     }
 
     private void addDirectionsToDrawables() {
@@ -163,7 +175,7 @@ public class truckCarMatrix extends AppCompatActivity {
     private int scoreCars() {
         int finalScore = 0;
         if (!boardGenerated) {
-            generateBoardArrayCoordinates();
+            addDirectionsToBoard();
         }
         for (int i = 0; i < coordinatesArray.size(); i++) {
             for (int j = 0; j < rtArray.size(); j++) {
@@ -186,6 +198,7 @@ public class truckCarMatrix extends AppCompatActivity {
     private final class dragTouchListener implements View.OnTouchListener {
         @Override
         public boolean onTouch(View view, MotionEvent event) {
+            System.out.println(scoreCars());
 
             touchMessages.add(event.getAction() + " = " + event.getX() + " : " + event.getY() + " : " + System.currentTimeMillis());
 
@@ -208,18 +221,18 @@ public class truckCarMatrix extends AppCompatActivity {
                     finalScore = scoreCars();
 
                     timer.cancel();
-                    MainModel mainModel = MainModel.getInstance(currentView);
-                    Session session = mainModel.getCurrentSession();
-                    session.setSmd_timeTaken(timeTakenSeconds);
-                    session.setSmd_correctCars(finalScore);
-                    mainModel.updateSession(session);
-
-                    Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
-                    String datestr = sdf.format(date);
-                    String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
-                    mainModel.writeTest("Directions_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
                 }
+                MainModel mainModel = MainModel.getInstance(currentView);
+                Session session = mainModel.getCurrentSession();
+                session.setSmd_timeTaken(timeTakenSeconds);
+                session.setSmd_correctCars(finalScore);
+                mainModel.updateSession(session);
+
+                Date date = new Date(System.currentTimeMillis());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+                String datestr = sdf.format(date);
+                String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+                mainModel.writeTest("Directions_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
 
                 Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
                 startActivity(intent);

@@ -93,8 +93,13 @@ public class RoadSignRecognition extends AppCompatActivity {
     private int getScore() {
         int tempScore = 0;
         for (int i = 0; i < roadOverlay.size() - 1; i++) {
-            if (roadSigns[i] == roadOverlay.get(i).getTag()) {
-                tempScore++;
+            try {
+                if (roadSigns[i].intValue() == Integer.parseInt(roadOverlay.get(i).getTag().toString())) {
+                    tempScore++;
+                }
+            }catch (Exception e)
+            {
+
             }
         }
         return tempScore;
@@ -111,8 +116,7 @@ public class RoadSignRecognition extends AppCompatActivity {
             String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
             view.startDragAndDrop(data, shadowBuilder, view, 0);
 
-            System.out.println(view.getTag());
-            System.out.println(roadSigns[12]);
+            System.out.println("Clicked on tag: "+view.getTag());
             if ((!timerStarted) && (view.getTag() != roadSigns[12])) {
                 timer.start();
                 System.out.println("Timer Started");
@@ -123,24 +127,26 @@ public class RoadSignRecognition extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            System.out.println(getScore());
             if (view == findViewById(R.id.FinishButton)) {
                 //record scores
                 if (!timeOver) {
                     finalScore = getScore();
 
                     timer.cancel();
-                    MainModel mainModel = MainModel.getInstance(currentView);
-                    Session session = mainModel.getCurrentSession();
-                    session.setRsr_correctSigns(finalScore);
-                    session.setRsr_timeTaken(timeTakenSeconds);
-                    mainModel.updateSession(session);
-
-                    Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
-                    String datestr = sdf.format(date);
-                    String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
-                    mainModel.writeTest("RoadSignRecognition_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
                 }
+                MainModel mainModel = MainModel.getInstance(currentView);
+                Session session = mainModel.getCurrentSession();
+                session.setRsr_correctSigns(finalScore);
+                session.setRsr_timeTaken(timeTakenSeconds);
+                mainModel.updateSession(session);
+
+                Date date = new Date(System.currentTimeMillis());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+                String datestr = sdf.format(date);
+                String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+                mainModel.writeTest("RoadSignRecognition_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
+
 
                 Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
                 startActivity(intent);
@@ -171,20 +177,24 @@ public class RoadSignRecognition extends AppCompatActivity {
                     view.invalidate();
                     ImageView draggedFrom = (ImageView) dragEvent.getLocalState();
                     ViewGroup overlayView = (ViewGroup) view.getParent();
+                    System.out.println("Dragged into tag: " + overlayView.getTag());
+                    if (view.getId() == draggedFrom.getId())
+                    {
+                        break;
+                    }
                     if ((view.getId() == R.id.scrollRoad) || (overlayView.getId() == R.id.roadSignScroll))
                     {
                         roadSignsArrayList.add(Integer.valueOf(draggedFrom.getTag().toString()));
-                        repopulateRoadScrollView();
-                        draggedFrom.setImageDrawable(null);
                         draggedFrom.setTag(null);
+                        draggedFrom.setImageDrawable(null);
+                        repopulateRoadScrollView();
                         break;
                     }
-                    ImageView container = (ImageView) view;
                     ImageView containerOverlayImage = (ImageView) overlayView.getChildAt(1);
-
                     if ((draggedFrom.getTag() == containerOverlayImage.getTag()) || (containerOverlayImage.getDrawable() != null)) {
                         break;
                     }
+
                     System.out.println(overlayView.getChildAt(1).getId());
                     System.out.println(findViewById(R.id.road1Overlay).getId());
 
@@ -212,6 +222,7 @@ public class RoadSignRecognition extends AppCompatActivity {
             ImageView roadSign = new ImageView(this);
             roadSign.setImageResource(roadSignsArrayList.get(i));
             roadSign.setTag(roadSignsArrayList.get(i));
+            System.out.println(roadSign.getTag());
             roadSignScrollArray.addView(roadSign);
             roadSign.setOnLongClickListener(new onLongClick());
             roadSign.setOnDragListener(new dragListener());

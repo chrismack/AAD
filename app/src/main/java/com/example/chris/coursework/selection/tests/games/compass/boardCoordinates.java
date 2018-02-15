@@ -15,11 +15,9 @@ public class boardCoordinates {
         this.viewID = ID;
     }
     public void setX(int x){
-        setFirstDirection1(x);
         this.xValue = x;
     }
     public void setY(int y){
-        setSecondDirection1(y);
         this.yValue = y;
     }
     public void setFirstDirection(String x){
@@ -44,32 +42,4 @@ public class boardCoordinates {
         return this.secondDirection;
     }
 
-    private void setFirstDirection1(int x){
-        if (x == 310){
-            this.setFirstDirection("SE");
-        }
-        else if (x == 620){
-            this.setFirstDirection("NE");
-        }
-        else if (x == 930){
-            this.setFirstDirection("SW");
-        }
-        else if (x == 1240){
-            this.setFirstDirection("E");
-        }
-    }
-    private void setSecondDirection1(int y){
-        if (y == 486){
-            this.setSecondDirection("W");
-        }
-        else if (y == 796){
-            this.setSecondDirection("NW");
-        }
-        else if (y == 1106){
-            this.setSecondDirection("N");
-        }
-        else if (y == 1416){
-            this.setSecondDirection("S");
-        }
-    }
 }
