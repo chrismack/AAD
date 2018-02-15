@@ -171,6 +171,11 @@ public class RoadSignRecognition extends AppCompatActivity {
                     view.invalidate();
                     ImageView draggedFrom = (ImageView) dragEvent.getLocalState();
                     ViewGroup overlayView = (ViewGroup) view.getParent();
+                    ImageView containerOverlayImage = (ImageView) overlayView.getChildAt(1);
+                    if (view.getId() == draggedFrom.getId())
+                    {
+                        break;
+                    }
                     if ((view.getId() == R.id.scrollRoad) || (overlayView.getId() == R.id.roadSignScroll))
                     {
                         roadSignsArrayList.add(Integer.valueOf(draggedFrom.getTag().toString()));
@@ -179,12 +184,10 @@ public class RoadSignRecognition extends AppCompatActivity {
                         draggedFrom.setTag(null);
                         break;
                     }
-                    ImageView container = (ImageView) view;
-                    ImageView containerOverlayImage = (ImageView) overlayView.getChildAt(1);
-
                     if ((draggedFrom.getTag() == containerOverlayImage.getTag()) || (containerOverlayImage.getDrawable() != null)) {
                         break;
                     }
+
                     System.out.println(overlayView.getChildAt(1).getId());
                     System.out.println(findViewById(R.id.road1Overlay).getId());
 
