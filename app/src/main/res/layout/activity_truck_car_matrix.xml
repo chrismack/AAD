@@ -28,13 +28,11 @@
                 android:layout_width="155dp"
                 android:layout_height="155dp"
                 android:layout_column="1"
-                android:background="@android:color/black"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/top0" />
 
             <ImageView
                 android:id="@+id/imageView2"
-
                 android:layout_width="155dp"
                 android:layout_height="155dp"
                 app:srcCompat="@drawable/top1" />
@@ -66,22 +64,30 @@
             <ImageView
                 android:id="@+id/option1"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option2"
                 android:layout_width="310px"
-                android:layout_height="310px" />
+                android:layout_height="310px"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option3"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option4"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
         </TableRow>
 
         <TableRow
@@ -97,22 +103,30 @@
             <ImageView
                 android:id="@+id/option5"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option6"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option7"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option8"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
         </TableRow>
 
         <TableRow
@@ -128,22 +142,30 @@
             <ImageView
                 android:id="@+id/option9"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option10"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option11"
                 android:layout_width="155dp"
-                android:layout_height="155dp"/>
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option12"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
         </TableRow>
 
         <TableRow
@@ -159,22 +181,30 @@
             <ImageView
                 android:id="@+id/option13"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option14"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option15"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
 
             <ImageView
                 android:id="@+id/option16"
                 android:layout_width="155dp"
-                android:layout_height="155dp" />
+                android:layout_height="155dp"
+                android:background="@drawable/matrixborder"
+                android:padding="5dp"/>
         </TableRow>
 
         <TableRow
