@@ -44,22 +44,17 @@ public class DotMatrixView extends AppCompatActivity implements DotMatrixContrac
 
         this.presenter = new DotMatrixPresenter(this);
 
-        img_dm_sec1.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                System.out.println(img_dm_sec1.getMeasuredWidth());
-                System.out.println(img_dm_sec1.getMeasuredHeight());
-            }
-        });
+        img_dm_sec1.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int width = img_dm_sec1.getMeasuredWidth();
+        int height = img_dm_sec1.getMeasuredHeight();
+        this.presenter.setSec1Width(width);
+        this.presenter.setSec2Height(height);
 
-        img_dm_sec2.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                System.out.println(img_dm_sec2.getMeasuredWidth());
-                System.out.println(img_dm_sec2.getMeasuredHeight());
-            }
-        });
-
+        img_dm_sec2.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        width = img_dm_sec2.getMeasuredWidth();
+        height = img_dm_sec2.getMeasuredHeight();
+        this.presenter.setSec2Width(width);
+        this.presenter.setSec2Height(height);
     }
 
     @Override

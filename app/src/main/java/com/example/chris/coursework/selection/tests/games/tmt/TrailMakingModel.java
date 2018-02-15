@@ -166,8 +166,9 @@ public class TrailMakingModel extends TestBase {
         for(int i = 0; i < count; i++) {
             validPosition = false;
             while(!validPosition) {
-                randomX = random.nextInt((maxX - minX - minSpaceX) + 1) + minX + minSpaceX;
-                randomY = random.nextInt((maxY - minY - minSpaceY) + 1) + minY + minSpaceY;
+
+                randomX = random.nextInt((maxX - (minX + minSpaceX)) + 1) + minX + minSpaceX;
+                randomY = random.nextInt((maxY - (minY + minSpaceY)) + 1) + minY + minSpaceY;
                 pair = new Pair<>(randomX, randomY);
 
                 if (randomPositions.size() < 1) {

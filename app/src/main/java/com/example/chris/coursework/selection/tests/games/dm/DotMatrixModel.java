@@ -46,10 +46,10 @@ public class DotMatrixModel extends TestBase {
     private final int section1TotalYDots = 11;
     private final int section2TotalYDots = 10;
 
-    private final int sec1Width = 2564;
-    private final int sec1Height = 1114;
-    private final int sec2Width = 2564;
-    private final int sec2Height = 1040;
+    private int sec1Width = 2564;
+    private int sec1Height = 1114;
+    private int sec2Width = 2564;
+    private int sec2Height = 1040;
 
     private final float sec1GroupWidth = sec1Width / section1TotalXDots;
     private final float sec1GroupHeight = sec1Height / section1TotalYDots;
@@ -342,5 +342,21 @@ public class DotMatrixModel extends TestBase {
 
     public float getSec2GroupHeight() {
         return sec2GroupHeight;
+    }
+
+    public void setSec1Width(int sec1Width) {
+        this.sec1Width = sec1Width;
+    }
+
+    public void setSec1Height(int sec1Height) {
+        this.sec1Height = sec1Height;
+    }
+
+    public void setSec2Width(int sec2Width) {
+        this.sec2Width = sec2Width;
+    }
+
+    public void setSec2Height(int sec2Height) {
+        this.sec2Height = sec2Height;
     }
 }

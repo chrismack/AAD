@@ -34,6 +34,12 @@ public interface DotMatrixContract {
 
         DotMatrixView getView();
 
+        void setSec1Width(int width);
+        void setSec1Height(int height);
+
+        void setSec2Width(int width);
+        void setSec2Height(int height);
+
 
     }
 
