@@ -241,4 +241,24 @@ public class DotMatrixPresenter implements DotMatrixContract.IDotMatrixPresenter
     public DotMatrixView getView() {
         return this.view;
     }
+
+    @Override
+    public void setSec1Width(int width) {
+        this.model.setSec1Width(width);
+    }
+
+    @Override
+    public void setSec1Height(int height) {
+        this.model.setSec1Height(height);
+    }
+
+    @Override
+    public void setSec2Width(int width) {
+        this.model.setSec2Width(width);
+    }
+
+    @Override
+    public void setSec2Height(int height) {
+        this.model.setSec2Height(height);
+    }
 }
