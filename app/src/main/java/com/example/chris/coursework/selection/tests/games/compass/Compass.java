@@ -261,19 +261,18 @@ public class Compass extends AppCompatActivity {
                 if (!timeOver) {
                     finalScore = scoreCars();
                     timer.cancel();
-                    MainModel mainModel = MainModel.getInstance(currentView);
-                    Session session = mainModel.getCurrentSession();
-                    session.setSmc_timeTaken(timeTakenSeconds);
-                    session.setSmc_blueCars(finalScore);
-                    mainModel.updateSession(session);
-
-                    Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
-                    String datestr = sdf.format(date);
-                    String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
-                    mainModel.writeTest("Compass_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
-
                 }
+                MainModel mainModel = MainModel.getInstance(currentView);
+                Session session = mainModel.getCurrentSession();
+                session.setSmc_timeTaken(timeTakenSeconds);
+                session.setSmc_blueCars(finalScore);
+                mainModel.updateSession(session);
+
+                Date date = new Date(System.currentTimeMillis());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");
+                String datestr = sdf.format(date);
+                String patientFirstLast = mainModel.getCurrentPatient().getFirstName() + mainModel.getCurrentPatient().getLastName();
+                mainModel.writeTest("Compass_" + patientFirstLast + "_" + datestr + ".txt", touchMessages);
 
                 Intent intent = new Intent(getApplicationContext(), TestSelectionView.class);
                 startActivity(intent);
