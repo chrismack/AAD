@@ -21,7 +21,7 @@ public class ReviewPresenter implements ReviewContract.IReviewPresenter {
         view.getTv_rev_dc_error().setText(selectedSession.getDm_trueNeg() + "");
         view.getTv_rev_dc_fp().setText(selectedSession.getDm_falsePos() + "");
 
-        view.getTv_rev_sqd_ds().setText(selectedSession.getSmd_correctLorries() + "");
+        view.getTv_rev_sqd_ds().setText(selectedSession.getSmd_correctCars() + "");
 
         view.getTv_rev_rsr_ds().setText(selectedSession.getRsr_correctSigns() + "");
 
