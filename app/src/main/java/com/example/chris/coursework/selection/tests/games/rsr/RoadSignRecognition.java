@@ -93,8 +93,13 @@ public class RoadSignRecognition extends AppCompatActivity {
     private int getScore() {
         int tempScore = 0;
         for (int i = 0; i < roadOverlay.size() - 1; i++) {
-            if (roadSigns[i] == roadOverlay.get(i).getTag()) {
-                tempScore++;
+            try {
+                if (roadSigns[i].intValue() == Integer.parseInt(roadOverlay.get(i).getTag().toString())) {
+                    tempScore++;
+                }
+            }catch (Exception e)
+            {
+
             }
         }
         return tempScore;
